@@ -12,5 +12,6 @@
 //
 //= require rails-ujs
 //= require activestorage
-//= require turbolinks
+//= require zepto.min
+//= require handlebars-v4.0.12
 //= require_tree .

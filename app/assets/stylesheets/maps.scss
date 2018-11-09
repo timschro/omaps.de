@@ -1,0 +1,188 @@
+// Place all the styles related to the maps controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#map {
+  margin-top: 0px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+
+
+.wf-active {
+  .title {
+    margin-top:10px;
+    h1 {
+      font-size: 48px;
+      margin: 0;
+      font-weight: 400;
+      display: inline-block;
+    }
+    h2 {
+      font-size: 20px;
+      line-height: 14px;
+      text-transform: uppercase;
+      font-weight: 400;
+      display: inline-block;
+
+    }
+  }
+
+
+}
+
+.wf-loading, .wp-inactive{
+  .title {
+    h1 {
+      font-size: 48px;
+      margin: 0;
+      font-weight: 400;
+      display: inline-block;
+
+    }
+    h2 {
+      display: none;
+    }
+  }
+
+
+}
+
+
+
+h1, h2 {
+
+  text-align: left;
+
+  font-weight: 400;
+
+  color: #3C3E44;
+
+  text-shadow: 1px 1px #FFFFFF;
+
+}
+
+
+.title {
+
+  background-color:rgba(255, 255, 255, 0.3);
+
+  padding:0 18px;
+  height: 80px;
+  position: absolute;
+  right:0;
+  top:0;
+
+
+  img {
+    margin-right:20px;
+    float: left;
+    height: 66px;
+  }
+
+  h3 {
+    font-size:18px;
+    line-height:normal;
+    margin:0;
+  }
+
+
+
+
+}
+
+
+body { margin:0; padding:0; }
+
+.mapbox{
+  margin:0;padding:0;
+}
+
+
+.mapboxgl-ctrl-add {
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiI+ICA8cGF0aCBmaWxsPSJub25lIiBkPSJNMCAwaDMydjMySDB6Ii8+ICA8cGF0aCBkPSJNMjIgMjJoLTR2Mmg0djRoMnYtNGg0di0yaC00di00aC0yem0xMCAxYTkgOSAwIDAgMC04LTlWNS43TDE4LjQgMEgwdjMyaDI0YTkgOSAwIDAgMCA4LTl6TTE4IDIuNEwyMS42IDZIMThWMi40ek0yIDMwVjJoMTR2Nmg2djZhOSA5IDAgMCAwLTQuNyAxNkgyem0yMS0uMUE2LjkgNi45IDAgMCAxIDIzIDE2IDYuOSA2LjkgMCAwIDEgMjMgMzB6Ii8+PC9zdmc+);
+  background-size: 70%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+
+div.mapboxgl-ctrl-geocoder {
+  min-width: 360px;
+  max-width: 400px;
+  input[type='text'] {
+    font-size: 16px;
+  }
+}
+
+
+
+.mapboxgl-popup {
+  p,h4 {
+    margin:0;
+    padding:0;
+  }
+  h4 {
+    font-size:16px;
+  }
+  width:260px;
+}
+
+
+#entry {
+  display: none;
+  top:0;
+  left: 0;
+  position: absolute;
+  min-width: 360px;
+  max-width: 400px;
+  width: 33.3333%;
+  height:100%;
+  background-color: #fff;
+  padding: 20px 10px 20px 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
+  overflow: auto;
+  z-index:999;
+}
+
+
+#hideButton{
+  position: absolute;
+  right:10px;
+  top:10px;
+  cursor: pointer;
+  font-size: 40px;
+}
+
+.entry {
+  a.remote {
+    text-decoration: underline;
+    font-size: 80%;
+  }
+  p, h3 {
+    padding: 0;
+    margin: 0;
+  }
+  h1 {
+    font-size: 150%;
+    font-weight: bold;
+  }
+  h3 {
+    margin: 10px 0 0 0;
+    text-align: left;
+
+  }
+  p {
+    font-size: 12px;
+
+  }
+  img.preview {
+    max-width: 100%;
+    matgin-top:10px;
+  }
+}
+@import "mobile";

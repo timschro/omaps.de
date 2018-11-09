@@ -1,0 +1,23 @@
+!!!
+%html
+  %head
+    %meta{:charset => "utf-8"}/
+    %title
+      OMaps.de#{content_for?(:title) ? " - #{yield(:title)}" : ""}
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+    %meta{:content => "Das Orientierungssport-Kartenverzeichnis für Deutschland", :name => "description"}/
+    %meta{:content => "initial-scale=1,maximum-scale=1,user-scalable=no", :name => "viewport"}/
+    %link{:href => "https://api.mapbox.com/mapbox-assembly/v0.23.1/assembly.min.css", :rel => "stylesheet"}/
+    %script{:async => "", :defer => "defer", :src => "https://api.mapbox.com/mapbox-assembly/v0.23.1/assembly.js"}
+    %script{:src => "https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.js"}
+    %link{:href => "https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.css", :rel => "stylesheet"}/
+    %script{:src => "https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.min.js"}
+    %link{:href => "https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.css", :rel => "stylesheet", :type => "text/css"}/
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application', async: true, defer: true
+  %body
+    .mapbox
+      = yield
+    .title= link_to image_tag(asset_path("logo.png")), "/"

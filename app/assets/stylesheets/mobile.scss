@@ -1,0 +1,35 @@
+
+@media (max-width: 480px) {
+
+  .title {
+    img {
+      margin-right:10px;
+      float: left;
+      height: 50px;
+
+    }
+
+    h1 {
+      font-size: 48px;
+    }
+    h2 {
+      font-size: 14px;
+    }
+
+  }
+  .input-append {
+    .twitter-typeahead .tt-query {
+      width:190px;
+      font-size: 14px;
+
+    }
+    button.btn {
+       width:40px;
+    }
+  }
+  #locator {
+    float:left;
+    margin-top:10px;
+  }
+
+}

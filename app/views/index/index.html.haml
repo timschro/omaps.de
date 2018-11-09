@@ -1,0 +1,95 @@
+#map
+
+#loading-background.flex-parent.flex-parent--center-cross.flex-parent--center-main.absolute.top.right.bottom.left.bg-darken10.z5
+  #spinner.flex-child.loading
+
+#entry
+
+
+
+
+%script#entry-template{type: "text/x-handlebars-template"}
+  #hideButton
+    %svg.icon
+      %use{"xlink:href" => "#icon-close"}
+  .entry
+    %h1 {{title}}
+    .body
+      %img.preview{:src => "{{images_urls.[0]}}"}/
+      %h3 Kartentyp
+      %p {{map_type.title}}
+      {{#if identifier}}
+      %h3 Karten-ID
+      %p {{identifier}}
+      {{/if}}
+      {{#if club.name}}
+      %h3 Verein
+      %p {{club.name}}
+      {{/if}}
+      {{#if scale}}
+      %h3 Maßstab
+      %p 1:{{scale}}
+      {{/if}}
+
+      {{#if contours}}
+      %h3 Äquidistanz
+      %p {{contours}} m
+      {{/if}}
+
+      {{#if mapper}}
+      %h3 Kartenaufnahme
+      %p {{mapper}}
+      {{/if}}
+
+      {{#if year}}
+      %h3 Stand
+      %p {{year}}
+      {{/if}}
+
+      {{#if contact_email}}
+      %h3 Kontakt
+      %p {{contact_email}}
+      {{/if}}
+
+      {{#if description}}
+      %h3 Beschreibung
+      %p {{description}}
+      {{/if}}
+    %p
+      %input{type: "text", value: "/map/{{url}}"}
+    %p
+      Erstellt von {{submitter.firstname}} {{submitter.lastname}}.
+    %p
+      Zuletzt bearbeitet von {{last_editor.firstname}} {{last_editor.lastname}}.
+
+
+
+
+- if @map.nil?
+  :javascript
+    const center = [12.208, 51.508];
+    const deeplink = false;
+    const mapId = 0;
+- else
+  :javascript
+    const center = [#{@map.lng}, #{@map.lat}];
+    const deeplink = true;
+    const mapId = #{@map.id};
+
+:javascript
+  var url = "#{maps_url(format: :json)}";
+  var searchUrl = "#{search_maps_url(format: :json)}";
+  var detailUrl = "#{map_url(format: :json, id: 'mapId')}";
+
+
+
+
+  mapboxgl.accessToken = 'pk.eyJ1Ijoib3JpZW50ZXJhcmUiLCJhIjoiTDg0RE5WZyJ9.OyBqycEeIbDxvsFSP0Pzbw';
+
+  var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/orienterare/cj731u0fm264z2sqh47snx9ep',
+    center: [12.208, 51.508],
+    zoom: 5
+      // maxBounds: boundsGermanyExtended
+  });
