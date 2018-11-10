@@ -111,21 +111,5 @@ class Map < ActiveRecord::Base
   end
 
 
-  def submitter_label
-    return '<i class="icon-cloud-download"></i> Importer' if self.submitter.nil?
-    "<i class='#{self.submitter.icon_class}'></i> #{self.submitter.full_name}"
-  end
-
-  def editor_label
-    return '<i class="icon-cloud-download"></i> Importer' if self.last_editor.nil?
-    "<i class='#{self.last_editor.icon_class}'></i> #{self.last_editor.full_name}"
-  end
-
-
-
-  def full_url
-    "http://www.omaps.de/map/#{self.url}"
-  end
-
 
 end

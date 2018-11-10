@@ -132,54 +132,19 @@ div.mapboxgl-ctrl-geocoder {
 }
 
 
-#entry {
-  display: none;
-  top:0;
-  left: 0;
-  position: absolute;
-  min-width: 360px;
-  max-width: 400px;
-  width: 33.3333%;
-  height:100%;
-  background-color: #fff;
-  padding: 20px 10px 20px 10px;
-  border-radius: 5px;
-  box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
-  overflow: auto;
-  z-index:999;
-}
-
 
 #hideButton{
-  position: absolute;
-  right:10px;
-  top:10px;
-  cursor: pointer;
-  font-size: 40px;
+
+  font-size: 20px;
 }
 
-.entry {
-  a.remote {
-    text-decoration: underline;
-    font-size: 80%;
-  }
-  p, h3 {
-    padding: 0;
-    margin: 0;
-  }
-  h1 {
-    font-size: 150%;
-    font-weight: bold;
-  }
-  h3 {
-    margin: 10px 0 0 0;
-    text-align: left;
 
-  }
-  p {
-    font-size: 12px;
+#entry {
+  display: none;
+}
 
-  }
+#entry {
+
   img.preview {
     max-width: 100%;
     matgin-top:10px;

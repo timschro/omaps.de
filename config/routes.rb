@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   get 'impressum' => 'meta#imprint'
-  get 'index/index'
+  get 'map/:id' => 'index#index', as: 'map_detail'
   resources :maps, only: [:index, :show] do
     collection do
       get :search

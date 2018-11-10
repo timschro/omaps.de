@@ -1,66 +1,57 @@
 #map
 
-#loading-background.flex-parent.flex-parent--center-cross.flex-parent--center-main.absolute.top.right.bottom.left.bg-darken10.z5
+#loading-background.flex-parent.flex-parent--center-cross.flex-parent--center-main.absolute.top.right.bottom.left.bg-darken25.z5
   #spinner.flex-child.loading
 
 #entry
 
 
-
-
 %script#entry-template{type: "text/x-handlebars-template"}
-  #hideButton
-    %svg.icon
-      %use{"xlink:href" => "#icon-close"}
-  .entry
-    %h1 {{title}}
-    .body
-      %img.preview{:src => "{{images_urls.[0]}}"}/
-      %h3 Kartentyp
-      %p {{map_type.title}}
-      {{#if identifier}}
-      %h3 Karten-ID
-      %p {{identifier}}
-      {{/if}}
-      {{#if club.name}}
-      %h3 Verein
-      %p {{club.name}}
-      {{/if}}
-      {{#if scale}}
-      %h3 Maßstab
-      %p 1:{{scale}}
-      {{/if}}
+  .absolute.top-ml.left.bottom.z1.w-full.w300-ml.px12.py12-ml.mt60.mb30
+    .flex-parent.flex-parent--column.viewport-third.h-full.bg-white.round-ml.shadow-darken10
+      .px12.py12.scroll-auto
+        %button#hideButton.absolute.top.right.px12.py12
+          %svg.icon.link.color-darken50
+            %use{"xlink:href" => "#icon-close"}
+        %h2.txt-m.txt-bold {{name}}
+        %h3.txt-m {{map_type}}
+        %img.preview{:src => "{{images_urls.[0]}}"}/
+        {{#if club}}
+        %h3.txt-s.txt-bold.mt6 &copy; {{year}} {{club}}
+        {{/if}}
+        {{#if scale}}
+        %h3.txt-s.txt-bold.mt6
+          Maßstab
+          %span.txt-s.txt-light 1:{{scale}}
+        {{/if}}
 
-      {{#if contours}}
-      %h3 Äquidistanz
-      %p {{contours}} m
-      {{/if}}
+        {{#if contours}}
+        %h3.txt-s.txt-bold.mt6
+          Äquidistanz
+          %span.txt-s.txt-light {{contours}} m
+        {{/if}}
 
-      {{#if mapper}}
-      %h3 Kartenaufnahme
-      %p {{mapper}}
-      {{/if}}
+        {{#if mapper}}
+        %h3.txt-s.txt-bold.mt6
+          Kartenaufnahme
+          %span.txt-s.txt-light {{mapper}}
+        {{/if}}
 
-      {{#if year}}
-      %h3 Stand
-      %p {{year}}
-      {{/if}}
+        {{#if contact_email}}
+        %h3.txt-s.txt-bold.mt6
+          Kontakt
+          %span.txt-s.txt-light {{contact_email}}
+        {{/if}}
 
-      {{#if contact_email}}
-      %h3 Kontakt
-      %p {{contact_email}}
-      {{/if}}
-
-      {{#if description}}
-      %h3 Beschreibung
-      %p {{description}}
-      {{/if}}
-    %p
-      %input{type: "text", value: "/map/{{url}}"}
-    %p
-      Erstellt von {{submitter.firstname}} {{submitter.lastname}}.
-    %p
-      Zuletzt bearbeitet von {{last_editor.firstname}} {{last_editor.lastname}}.
+        {{#if description}}
+        %p.txt-s.txt-light.mt6 {{description}}
+        {{/if}}
+        {{#if identifier}}
+        %h3.txt-s.txt-bold.mt6
+          Karten-ID
+          %span.txt-s.txt-light {{identifier}}
+        {{/if}}
+        %a.txt-s.txt-light{href: '{{url}}', target: '_blank'} {{url}}
 
 
 

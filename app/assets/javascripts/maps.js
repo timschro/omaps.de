@@ -62,6 +62,13 @@ var afterChangeComplete = function (e) {
         console.log("afterChangeComplete");
         loadSearchMaps();
         loadingSpinner(false);
+        if (deeplink === true) {
+            console.log(center)
+            map.flyTo({center: center, zoom: defaultDetailZoom});
+            populateMapDetails(mapId);
+        } else {
+            map.fitBounds(boundsGermany);
+        }
         map.off('render', afterChangeComplete)
     }
 };
@@ -89,17 +96,61 @@ var omapsGeocoder = function (query) {
     return hits;
 };
 
-function populateMapDetails(template, mapId) {
+function populateMapDetails(mapId) {
+
+    var source = document.getElementById("entry-template").innerHTML;
+    var template = Handlebars.compile(source);
+
+
+        if (map.getLayer("selectedFeature")) {
+            map.removeLayer("selectedFeature");
+        }
+        if (map.getSource("selectedFeature")) {
+            map.removeSource("selectedFeature");
+        }
+
+
+
+
+
+
     $.ajax({
         type: 'GET',
         url: detailUrl.replace('mapId', mapId),
         dataType: 'json',
         timeout: 1000,
         success: function (data) {
-            $("#entry").html(template(data));
+            $("#entry").html(template(data.properties));
             $("#entry").show();
+
+            map.addSource('selectedFeature', {
+                "type":"geojson",
+                "data": data
+            });
+            map.addLayer({
+                id: "selectedFeature",
+                source: "selectedFeature",
+                type: "circle",
+                'marker-symbol': 'rocket',
+                paint: {
+                    "circle-color": "#fd207e",
+                    "circle-radius": 10,
+                    "circle-stroke-width": 3,
+                    "circle-stroke-color": "#fff"
+                }
+            });
+
+
             $("#hideButton").on('click', function (e) {
                 $("#entry").hide();
+
+                if (map.getLayer("selectedFeature")) {
+                    map.removeLayer("selectedFeature");
+                }
+                if (map.getSource("selectedFeature")) {
+                    map.removeSource("selectedFeature");
+                }
+
             });
         },
         error: function (xhr, type) {
@@ -111,15 +162,8 @@ function populateMapDetails(template, mapId) {
 map.on('load', function () {
     console.log("Map ready");
     map.on('render', afterChangeComplete);
-    var source = document.getElementById("entry-template").innerHTML;
-    var template = Handlebars.compile(source);
-    if (deeplink === true) {
-        console.log(center)
-        map.flyTo({center: center, zoom: defaultDetailZoom});
-        populateMapDetails(template, mapId);
-    } else {
-        map.fitBounds(boundsGermany);
-    }
+
+
 
     map.addSource('maps', {
         type: 'geojson',
@@ -196,7 +240,7 @@ map.on('load', function () {
 
     map.on('click', 'unclustered-point', function (e) {
         map.flyTo({center: e.features[0].geometry.coordinates});
-        populateMapDetails(template, e.features[0].properties.id);
+        populateMapDetails(e.features[0].properties.id);
     });
 
     map.dragRotate.disable();
@@ -264,7 +308,7 @@ map.on('load', function () {
         //map.getSource('single-point').setData(ev.result.geometry);
         console.log(ev.result);
         if(ev.result.id.indexOf('omaps')>-1){
-            populateMapDetails(template, ev.result.id.replace('omaps.',''));
+            populateMapDetails(ev.result.id.replace('omaps.',''));
         }
     });
 });
