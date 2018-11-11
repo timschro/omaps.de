@@ -1,12 +1,9 @@
-test:
+bundle_audit:
   stage: test
-  script:
-  #- apt-get update -qy
-  #- apt-get install -y nodejs
-  - bundle install --path /cache
-  #- bundle exec rake db:create RAILS_ENV=test
-  #- bundle exec rake test
-  - bundle-audit check --update
+  script: |
+    gem install bundler-audit
+    bundle-audit update
+    bundle-audit check
 
 
 staging:
