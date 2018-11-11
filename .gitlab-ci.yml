@@ -10,7 +10,7 @@ staging:
   stage: deploy
   script:
   - gem install dpl
-  - dpl --provider=heroku --app=gitlab-ci-ruby-test-staging --api-key=$HEROKU_STAGING_API_KEY
+  - dpl --provider=heroku --app=omaps-2-staging --api-key=$HEROKU_STAGING_API_KEY
   only:
   - master
 
@@ -18,6 +18,6 @@ production:
   stage: deploy
   script:
   - gem install dpl
-  - dpl --provider=heroku --app=gitlab-ci-ruby-test-prod --api-key=$HEROKU_PRODUCTION_API_KEY
+  - dpl --provider=heroku --app=omaps-2-prod --api-key=$HEROKU_PRODUCTION_API_KEY
   only:
   - tags
