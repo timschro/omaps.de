@@ -248,20 +248,39 @@ map.on('load', function () {
 
     var popup = new mapboxgl.Popup({
         closeButton: false,
-        closeOnClick: false
+        closeOnClick: true
     });
 
     map.on('mouseenter', 'unclustered-point', function (e) {
-        // Change the cursor style as a UI indicator.
-        map.getCanvas().style.cursor = 'pointer';
-        var coordinates = e.features[0].geometry.coordinates.slice();
-        var description = "<h4>" + e.features[0].properties.name + "</h4><p>" + e.features[0].properties.year + " / " + e.features[0].properties.club + "</p>"; //e.features[0].properties.description;
-        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-            coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+
+        if (Modernizr.touchevents) {
+            // Touch devise, don't handle mouseenter
+        } else {
+
+            map.getCanvas().style.cursor = 'pointer';
+
+            var sourcePopup = document.getElementById("popup-template").innerHTML;
+            var templatePopup = Handlebars.compile(sourcePopup);
+
+            var data = {
+                title: e.features[0].properties.name,
+                year: e.features[0].properties.year,
+                club: e.features[0].properties.club,
+                type: e.features[0].properties.type
+            };
+            var coordinates = e.features[0].geometry.coordinates.slice();
+            var description = templatePopup(data);
+
+            while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+            }
+            popup.setLngLat(coordinates)
+                .setHTML(description)
+                .addTo(map);
         }
-        popup.setLngLat(coordinates)
-            .setHTML(description)
-            .addTo(map);
+
+
+
     });
 
     map.on('mouseleave', 'unclustered-point', function () {

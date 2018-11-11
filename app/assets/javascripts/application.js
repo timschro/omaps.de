@@ -14,4 +14,5 @@
 //= require activestorage
 //= require zepto.min
 //= require handlebars-v4.0.12
+//= require modernizr-custom
 //= require_tree .
