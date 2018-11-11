@@ -62,6 +62,8 @@ class MapsController < ApplicationController
 
     @map = Map.published_and_approved.where(id: params[:id]).last
 
+    geojson = {}
+
     geojson = {
       type: 'Feature',
       geometry: {
@@ -84,7 +86,7 @@ class MapsController < ApplicationController
           scale: @map.scale,
           contact_email: @map.contact_email
       }
-    }
+    } unless @map.nil?
 
 
     respond_to do |format|
