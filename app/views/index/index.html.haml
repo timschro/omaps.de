@@ -5,9 +5,13 @@
 
 #entry
 
+%script#popup-template{type: "text/x-handlebars-template"}
+  %h2.txt-m.txt-bold {{title}}
+  %h3.txt-m {{type}}
+  %p.txt-s &copy; {{year}} {{club}}
 
 %script#entry-template{type: "text/x-handlebars-template"}
-  .absolute.top-ml.left.bottom.z1.w-full.w300-ml.px12.py12-ml.mt60.mb30
+  .absolute.top-ml.left.bottom.z1.w-full.w300-ml.w300-mxl.px12.py12-ml.mt60.mb30
     .flex-parent.flex-parent--column.viewport-third.h-full.bg-white.round-ml.shadow-darken10
       .px12.py12.scroll-auto
         %button#hideButton.absolute.top.right.px12.py12
