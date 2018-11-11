@@ -1,11 +1,13 @@
 test:
   stage: test
   script:
-  - apt-get update -qy
-  - apt-get install -y nodejs
+  #- apt-get update -qy
+  #- apt-get install -y nodejs
   - bundle install --path /cache
-  - bundle exec rake db:create RAILS_ENV=test
-  - bundle exec rake test
+  #- bundle exec rake db:create RAILS_ENV=test
+  #- bundle exec rake test
+  - bundle audit check --update
+
 
 staging:
   stage: deploy

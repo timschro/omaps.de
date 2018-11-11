@@ -44,6 +44,8 @@ gem 'stringex'
 gem 'actionpack-page_caching'
 gem 'whenever', require: false
 
+gem 'devise'
+gem 'bundler-audit'
 
 
 group :development, :test do
