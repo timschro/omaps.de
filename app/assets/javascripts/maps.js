@@ -131,12 +131,11 @@ function populateMapDetails(mapId) {
                 id: "selectedFeature",
                 source: "selectedFeature",
                 type: "circle",
-                'marker-symbol': 'rocket',
                 paint: {
-                    "circle-color": "#fd207e",
-                    "circle-radius": 10,
-                    "circle-stroke-width": 3,
-                    "circle-stroke-color": "#fff"
+                    "circle-color": "#fff",
+                    "circle-radius": 12,
+                    "circle-stroke-width": 2,
+                    "circle-stroke-color": "#fd207e"
                 }
             });
 
@@ -219,8 +218,8 @@ map.on('load', function () {
         filter: ["!has", "point_count"],
         paint: {
             "circle-color": "#fd207e",
-            "circle-radius": 7,
-            "circle-stroke-width": 1,
+            "circle-radius": 10,
+            "circle-stroke-width": 2,
             "circle-stroke-color": "#fff"
         }
     });
