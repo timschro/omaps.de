@@ -335,7 +335,6 @@ map.on('load', function () {
 class AddMapControl {
     onAdd(map) {
         this._map = map;
-        let _this = this;
         this._btn = document.createElement('button');
         this._btn.className = 'mapboxgl-ctrl-icon mapboxgl-ctrl-add';
         this._btn.type = 'button';

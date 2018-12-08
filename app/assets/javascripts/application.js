@@ -10,8 +10,6 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require rails-ujs
-//= require activestorage
 //= require zepto.min
 //= require handlebars-v4.0.12
 //= require modernizr-custom
