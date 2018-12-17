@@ -151,4 +151,9 @@ div.mapboxgl-ctrl-geocoder {
     matgin-top:10px;
   }
 }
+.mapboxgl-ctrl-attrib {
+  p {
+    display:inline;
+  }
+}
 @import "mobile";

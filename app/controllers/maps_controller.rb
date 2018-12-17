@@ -1,31 +1,30 @@
 class MapsController < ApplicationController
 
-  caches_page :index, :search
 
 
   def index
     maps = Map.published_and_approved
-    geojson = {
-        type: 'FeatureCollection',
-        features: []
-    }
-
-    maps.each do |m|
-      geojson[:features] << {
-          type: 'Feature',
-          geometry: {
-              type: 'Point',
-              coordinates: [m.lng, m.lat]
-          },
-          properties: {
-              id: m.id,
-              name: m.title,
-              club: m.club.name,
-              year: m.year,
-              type: m.map_type.title
-          }
+      geojson = {
+          type: 'FeatureCollection',
+          features: []
       }
-    end
+
+      maps.each do |m|
+        geojson[:features] << {
+            type: 'Feature',
+            geometry: {
+                type: 'Point',
+                coordinates: [m.lng, m.lat]
+            },
+            properties: {
+                id: m.id,
+                name: m.title,
+                club: m.club.name,
+                year: m.year,
+                type: m.map_type.title
+            }
+        }
+      end
 
     respond_to do |format|
       format.json { render json: geojson }
@@ -39,12 +38,11 @@ class MapsController < ApplicationController
         type: 'FeatureCollection',
         features: []
     }
-
     maps.each do |m|
       geojson[:features] << {
           type: 'Feature',
           id:  "omaps.#{m.id}",
-          text: m.title,
+          text: "#{m.title} (#{m.club.name})",
           center: [m.lng, m.lat]
       }
 

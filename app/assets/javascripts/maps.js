@@ -81,19 +81,30 @@ $(document).ready(function () {
 });
 
 var omapsGeocoder = function (query) {
-    if (query.length < 4) {
+    if (query.length < 3) {
         return null;
     }
     var hits = [];
+
     for (var i = 0; i < searchMaps.length; i++) {
         var feature = searchMaps[i]
         if (feature.text.toLowerCase().includes(query.toLowerCase().replace('karte: ', ''))) {
-            feature.place_name = "Karte: " + feature.text;
+            feature.place_name = "Karte: " + feature.text
             feature.place_type = ["place"];
             hits.push(feature);
+            if(hits.length > 10) { break; }
         }
     }
     return hits;
+};
+
+
+var omapsGeocoderFilter = function (geojson) {
+    if(geojson.place_type.includes('region') || geojson.place_type.includes('place')) {
+        return true;
+    } else {
+        return false;
+    }
 };
 
 function populateMapDetails(mapId) {
@@ -293,7 +304,10 @@ map.on('load', function () {
         country: 'DE',
         language: 'DE',
         zoom: defaultDetailZoom,
-        suggestTimeout: 1000
+        suggestTimeout: 1000,
+        limit: 20,
+        minLength: 3,
+        filter: omapsGeocoderFilter
 
     });
     map.addControl(geocoder, "top-left");
