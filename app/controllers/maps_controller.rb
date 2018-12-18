@@ -3,7 +3,7 @@ class MapsController < ApplicationController
 
 
   def index
-    maps = Map.published_and_approved
+    maps = Map.published_and_approved.includes(:club,:map_type)
       geojson = {
           type: 'FeatureCollection',
           features: []
@@ -26,6 +26,7 @@ class MapsController < ApplicationController
         }
       end
 
+    expires_in 1.hour, public: true
     respond_to do |format|
       format.json { render json: geojson }
     end
@@ -33,7 +34,7 @@ class MapsController < ApplicationController
 
 
   def search
-    maps = Map.published_and_approved
+    maps = Map.published_and_approved.includes(:club,:map_type)
     geojson = {
         type: 'FeatureCollection',
         features: []
@@ -48,6 +49,9 @@ class MapsController < ApplicationController
 
 
     end
+
+    expires_in 1.hour, public: true
+
     respond_to do |format|
       format.json { render json: geojson }
     end

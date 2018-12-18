@@ -110,42 +110,5 @@ class Map < ActiveRecord::Base
   end
 
 
-  def self.available_maps_as_geojson options
-    maps = published_and_approved
-    geojson = {
-        type: 'FeatureCollection',
-        features: []
-    }
-
-    maps.each do |m|
-
-      if options[:search]
-        geojson[:features] << {
-            type: 'Feature',
-            center: [m.lng, m.lat],
-            id: "omaps.#{m.id}",
-            text: "#{m.title} (#{m.club.name})"
-        }
-      else
-        geojson[:features] << {
-            type: 'Feature',
-            geometry: {
-                type: 'Point',
-                coordinates: [m.lng, m.lat]
-            },
-            properties: {
-                id: m.id,
-                name:  m.title,
-                club: m.club.name,
-                year: m.year,
-                type: m.map_type.title
-            }
-        }
-      end
-    end
-    geojson
-  end
-
-
 
 end
