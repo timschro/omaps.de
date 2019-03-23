@@ -21,7 +21,6 @@ jobs:
     working_directory: ~/repo
 
     steps:
-      - run: mysql -h 127.0.0.1 -u root --pasword root -e "create database omaps_test"
 
       - checkout
 
