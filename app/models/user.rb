@@ -18,11 +18,9 @@ class User < ActiveRecord::Base
     "#{self.firstname} #{self.lastname}"
   end
 
-  def icon_class
-    return "icon-rocket" if self.is_admin?
-    "icon-user"
+  def admin?
+    self.is_admin
   end
-
 
 
 end

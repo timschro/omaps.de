@@ -72,8 +72,8 @@
     const mapId = #{@map.id};
 
 :javascript
-  var url = "#{maps_url(format: :json)}";
-  var searchUrl = "#{search_maps_url(format: :json)}";
+  var url = "/maps.json";
+  var searchUrl = "/search.json";
   var detailUrl = "#{map_url(format: :json, id: 'mapId')}";
 
 

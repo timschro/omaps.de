@@ -45,8 +45,11 @@ gem 'actionpack-page_caching'
 gem 'whenever', require: false
 
 gem 'devise'
+gem 'cancancan', '~> 2.0'
 
 gem 'newrelic_rpm'
+
+gem 'i18n-active_record', :require => 'i18n/active_record'
 
 
 group :development, :test do
@@ -75,5 +78,6 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
+gem 'rails_admin', '~> 1.3'
 
 ruby '2.5.3'

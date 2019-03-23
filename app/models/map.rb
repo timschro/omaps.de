@@ -109,6 +109,10 @@ class Map < ActiveRecord::Base
     # res
   end
 
+  rails_admin do
+
+      exclude_fields :worldofo, :imported, :url, :city, :zip, :region, :comment, :worldofo_id, :download_file_name, :download_content_type, :download_file_size, :download_updated_at, :comments, :status
+  end
 
 
 end

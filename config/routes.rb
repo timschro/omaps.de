@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  devise_for :users
   get 'impressum' => 'meta#imprint'
   get 'map/:id' => 'index#index', as: 'map_detail'
   resources :maps, only: [:index, :show] do
