@@ -39,6 +39,10 @@ jobs:
           # preinstalled in circleci/* docker image
           command: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
       - run:
+          name: install bundler
+          command: |
+            gem install bundler:2.0.1
+      - run:
           name: install dependencies
           command: |
             bundle install --jobs=4 --retry=3 --path vendor/bundle
