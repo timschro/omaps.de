@@ -92,4 +92,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'rails_admin', '~> 1.3'
 gem 'rails_admin_google_map', git: 'https://github.com/timschro/rails_admin_google_map.git'
 
-ruby '2.5.3'
+ruby '2.6.2'
