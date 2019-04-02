@@ -3,6 +3,12 @@
 # Check https://circleci.com/docs/2.0/language-ruby/ for more details
 #
 version: 2
+orbs:
+  heroku: circleci/heroku@1.0.0
+workflows:
+  heroku_deploy:
+    jobs:
+      - deploy
 jobs:
   build:
     docker:
@@ -77,3 +83,10 @@ jobs:
       - store_artifacts:
           path: /tmp/test-results
           destination: test-results
+  deploy:
+    executor: heroku/default
+    steps:
+      - checkout
+      - heroku/install
+      - heroku/deploy-via-git:
+          only-branch: master
