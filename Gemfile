@@ -51,6 +51,7 @@ gem 'newrelic_rpm'
 
 gem 'i18n-active_record', :require => 'i18n/active_record'
 
+gem 'paper_trail'
 
 
 group :development, :test do
