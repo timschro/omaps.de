@@ -1,5 +1,11 @@
 RailsAdmin.config do |config|
 
+  config.parent_controller = 'ApplicationController'
+  config.main_app_name = ["OMaps", "Administration"]
+
+  require 'i18n'
+  I18n.default_locale = :de
+
   ### Popular gems integration
 
   ## == Devise ==
@@ -51,6 +57,7 @@ RailsAdmin.config do |config|
     weight -1
   end
 
-  config.excluded_models = ["MapType", "State"]
+  config.excluded_models = ["MapType", "State", "Comment", "Image"]
+
 
 end

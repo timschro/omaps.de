@@ -64,6 +64,9 @@ class MapsController < ApplicationController
 
     @map = Map.published_and_approved.where(id: params[:id]).last
 
+    images = []
+    @map.images.each { |img| images << {url: url_for(img.variant(resize: "200x200"))} }
+
     geojson = {}
 
     geojson = {
@@ -86,7 +89,8 @@ class MapsController < ApplicationController
           mapper: @map.mapper,
           region: @map.region,
           scale: @map.scale,
-          contact_email: @map.contact_email
+          contact_email: @map.contact_email,
+          images: images
       }
     } unless @map.nil?
 

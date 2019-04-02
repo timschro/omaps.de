@@ -19,7 +19,6 @@
             %use{"xlink:href" => "#icon-close"}
         %h2.txt-m.txt-bold {{name}}
         %h3.txt-m {{map_type}}
-        %img.preview{:src => "{{images_urls.[0]}}"}/
         {{#if club}}
         %h3.txt-s.txt-bold.mt6 &copy; {{year}} {{club}}
         {{/if}}
@@ -56,6 +55,10 @@
           %span.txt-s.txt-light {{identifier}}
         {{/if}}
         -#%a.txt-s.txt-light{href: '{{url}}', target: '_blank'} {{url}}
+        {{#each images}}
+        %img.preview{:src => "{{url}}"}
+        {{~/each}}
+
 
 
 
@@ -73,7 +76,7 @@
 
 :javascript
   var url = "/maps.json";
-  var searchUrl = "/search.json";
+  var searchUrl = "/maps/search.json";
   var detailUrl = "#{map_url(format: :json, id: 'mapId')}";
 
 

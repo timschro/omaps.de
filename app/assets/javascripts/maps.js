@@ -354,7 +354,7 @@ class AddMapControl {
         this._btn.type = 'button';
         this._btn['aria-label'] = 'Add';
         this._btn.onclick = function () {
-            window.location.href = "https://www.omaps.de/";
+            window.location.href = "/admin";
         };
         this._container = document.createElement('div');
         this._container.className = 'mapboxgl-ctrl mapboxgl-ctrl-group';

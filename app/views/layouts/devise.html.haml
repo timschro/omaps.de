@@ -18,8 +18,11 @@
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application', async: true, defer: true
   %body
-    .mapbox
-      %h1
-        TEST
-      = yield
+    .prose.grid.grid--gut12
+      .col.col--1
+      .col.col--10
+        %h1
+          OMaps.de Administration
+        = yield
+      .col.col--1
     .top.right.absolute.w60.w120-ml.px12.py12= link_to image_tag(asset_path("logo.png")), "/"
