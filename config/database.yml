@@ -58,6 +58,4 @@ test:
 #
 production:
   <<: *mysql
-  database: omaps-2_0_production
-  username: omaps-2_0
-  password: <%= ENV['OMAPS-2_0_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
