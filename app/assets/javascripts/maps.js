@@ -358,7 +358,8 @@ class AddMapControl {
         };
         this._container = document.createElement('div');
         this._container.className = 'mapboxgl-ctrl mapboxgl-ctrl-group';
-        this._container.appendChild(this._btn);
+        //TODO Re-add button when admin panel is ready.
+        //this._container.appendChild(this._btn);
         return this._container;
     }
     onRemove() {
