@@ -57,7 +57,19 @@ RailsAdmin.config do |config|
     weight -1
   end
 
-  config.excluded_models = ["MapType", "State", "Comment", "Image"]
+  config.model 'MapType' do
+    field :title
+    list do
+      field :title
+      field :count do
+        pretty_value do
+          bindings[:object].maps.count
+        end
+      end
+    end
+  end
+
+  config.excluded_models = ["State", "Comment", "Image"]
 
 
 end

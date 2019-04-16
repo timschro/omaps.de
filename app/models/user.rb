@@ -20,7 +20,11 @@ class User < ActiveRecord::Base
   end
 
   def admin?
-    self.is_admin
+    self.is_admin || self.is_superadmin
+  end
+
+  def superadmin?
+    self.is_superadmin
   end
 
   def name
@@ -30,7 +34,7 @@ class User < ActiveRecord::Base
 
   rails_admin do
 
-    include_fields :lastname, :firstname, :email, :last_sign_in_at, :sign_in_count, :is_admin
+    include_fields :lastname, :firstname, :email, :last_sign_in_at, :sign_in_count, :is_admin, :is_superadmin
 
 
     list do

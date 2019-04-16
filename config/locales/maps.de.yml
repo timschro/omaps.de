@@ -4,6 +4,10 @@ de:
       user: User
       image: Bild
       map: Karte
+      map_type:
+        zero: Keine Kartenart
+        one: Eine Kartenart
+        other: Kartenarten
     attributes:
       map:
         title: Titel
@@ -12,11 +16,12 @@ de:
         mapper: Kartierer
         scale: Maßstab
         contours: Äquidistanz
-        contact_email: Kontaktadresse
+        map_type: Art
+        contact_email: Kontakt-Email
         website: Website
         description: Beschreibung
         approved: genehmigt
-        published: veröffentlicht
+        published: Karte veröffentlichen?
         submitter: Eingestellt von
         last_editor: Zuletzt bearbeitet von
         images: Bilder
