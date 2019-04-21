@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:timschro/rails_admin_mapbox_field.git
+  remote: https://github.com/timschro/rails_admin_mapbox_field.git
   revision: 1c46a94e2bff1e023a82d9848c320cc28576ff2e
   specs:
     rails_admin_mapbox_field (0.0.2)
