@@ -4,9 +4,11 @@ class Ability
   def initialize(user)
     if user.present?
       can :read, Map
+      can :new, Map
       can :read, Club
       can :read, MapType
       can :new, Club
+      can :dashboard, :all
 
       can :manage, Map, submitter_id: user.id
 
@@ -15,14 +17,12 @@ class Ability
 
       if user.admin?
         can :manage, [Map, MapType, Club]
-        can :dashboard, [Map, MapType, Club]
         can :history, [Map, MapType, Club]
       end
 
       if user.superadmin?
         can :read, :all
         can :manage, :all
-        can :dashboard, :all
         can :history, :all
       end
 
