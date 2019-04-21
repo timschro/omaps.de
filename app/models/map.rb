@@ -130,15 +130,21 @@ class Map < ActiveRecord::Base
       group :info
     end
 
+    field :lat, :map do
+      longitude_field :lng
+      mapbox_api_key 'pk.eyJ1Ijoib3JpZW50ZXJhcmUiLCJhIjoiTDg0RE5WZyJ9.OyBqycEeIbDxvsFSP0Pzbw'
+      mapbox_style 'mapbox://styles/orienterare/cj731u0fm264z2sqh47snx9ep'
+      group :geo
+    end
 
-    field :lat do
-      group :geo
-      help 'Erforderlich. Bitte vorerst die Koordinate der Karte im Dezimalformat manuell eintragen. Ein Auswahlmechanismus wird später bereitgestellt.'
-    end
-    field :lng do
-      group :geo
-      help 'Erforderlich. Bitte vorerst die Koordinate der Karte im Dezimalformat manuell eintragen. Ein Auswahlmechanismus wird später bereitgestellt.'
-    end
+    # field :lat do
+    #   group :geo
+    #   help 'Erforderlich. Bitte vorerst die Koordinate der Karte im Dezimalformat manuell eintragen. Ein Auswahlmechanismus wird später bereitgestellt.'
+    # end
+    # field :lng do
+    #   group :geo
+    #   help 'Erforderlich. Bitte vorerst die Koordinate der Karte im Dezimalformat manuell eintragen. Ein Auswahlmechanismus wird später bereitgestellt.'
+    # end
 
 
     field :images, :multiple_active_storage do
