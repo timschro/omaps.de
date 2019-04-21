@@ -28,7 +28,7 @@ de:
         created_at: Erstellungsdatum
         updated_at: Aktualisierungsdatum
         identifier: Karten-ID
-        lat: Breitengrad
+        lat: Position
         lng: Längengrad
 
 
