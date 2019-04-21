@@ -104,14 +104,14 @@ class Map < ActiveRecord::Base
     field :mapper do
       group :info
     end
-    field :scale, :string do
+    field :scale do
       group :info
-      formatted_value do
-        "1:#{value}"
-      end
-      pretty_value do
-        "1:#{value}"
-      end
+      # formatted_value do
+      #   "1:#{value}"
+      # end
+      # pretty_value do
+      #   "1:#{value}"
+      # end
       help 'Erforderlich. Angabe von 1:xxxxxx.'
     end
     field :contours do
