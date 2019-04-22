@@ -324,7 +324,7 @@ map.on('load', function () {
             }
         }
     });
-    map.style.sourceCaches['attribution-layer']._source.attribution = "&copy; OMaps.de <a href='/impressum'>Impressum</a>";
+    map.style.sourceCaches['attribution-layer']._source.attribution = "&copy; OMaps.de - Kartenverzeichnis Orientierungssport Deutschland | <a href='/impressum'>Impressum</a>";
 
     map.addControl(new mapboxgl.NavigationControl({
             showCompass: false
@@ -354,11 +354,12 @@ class AddMapControl {
         this._btn.type = 'button';
         this._btn['aria-label'] = 'Add';
         this._btn.onclick = function () {
-            window.location.href = "https://www.omaps.de/";
+            window.location.href = "/admin";
         };
         this._container = document.createElement('div');
         this._container.className = 'mapboxgl-ctrl mapboxgl-ctrl-group';
-        this._container.appendChild(this._btn);
+        //TODO Re-add button when admin panel is ready.
+        //this._container.appendChild(this._btn);
         return this._container;
     }
     onRemove() {

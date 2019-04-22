@@ -1,5 +1,11 @@
 RailsAdmin.config do |config|
 
+  config.parent_controller = 'ApplicationController'
+  config.main_app_name = ["OMaps", "Administration"]
+
+  require 'i18n'
+  I18n.default_locale = :de
+
   ### Popular gems integration
 
   ## == Devise ==
@@ -16,7 +22,9 @@ RailsAdmin.config do |config|
   # config.authorize_with :pundit
 
   ## == PaperTrail ==
-  # config.audit_with :paper_trail, 'User', 'PaperTrail::Version' # PaperTrail >= 3.0.0
+  config.audit_with :paper_trail, 'User', 'PaperTrail::Version' # PaperTrail >= 3.0.0
+  PAPER_TRAIL_AUDIT_MODEL = ['Map', 'User']
+
 
   ### More at https://github.com/sferik/rails_admin/wiki/Base-configuration
 
@@ -33,11 +41,14 @@ RailsAdmin.config do |config|
     show
     edit
     delete
-    show_in_app
+    #show_in_app
 
-    ## With an audit adapter, you can add:
-    # history_index
-    # history_show
+    history_index do
+      only PAPER_TRAIL_AUDIT_MODEL
+    end
+    history_show do
+      only PAPER_TRAIL_AUDIT_MODEL
+    end
   end
 
   config.model 'Map' do
@@ -46,6 +57,19 @@ RailsAdmin.config do |config|
     weight -1
   end
 
-  config.excluded_models = ["MapType", "State"]
+  config.model 'MapType' do
+    field :title
+    list do
+      field :title
+      field :count do
+        pretty_value do
+          bindings[:object].maps.count
+        end
+      end
+    end
+  end
+
+  config.excluded_models = ["State", "Comment", "Image"]
+
 
 end

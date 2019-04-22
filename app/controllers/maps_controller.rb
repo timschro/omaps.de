@@ -3,7 +3,7 @@ class MapsController < ApplicationController
 
 
   def index
-    maps = Map.published_and_approved.includes(:club,:map_type)
+    maps = Map.published.includes(:club,:map_type)
       geojson = {
           type: 'FeatureCollection',
           features: []
@@ -34,7 +34,7 @@ class MapsController < ApplicationController
 
 
   def search
-    maps = Map.published_and_approved.includes(:club,:map_type)
+    maps = Map.published.includes(:club,:map_type)
     geojson = {
         type: 'FeatureCollection',
         features: []
@@ -62,7 +62,10 @@ class MapsController < ApplicationController
 
   def show
 
-    @map = Map.published_and_approved.where(id: params[:id]).last
+    @map = Map.published.where(id: params[:id]).last
+
+    images = []
+    @map.images.each { |img| images << {url: url_for(img.variant(resize: "200x200"))} }
 
     geojson = {}
 
@@ -86,7 +89,8 @@ class MapsController < ApplicationController
           mapper: @map.mapper,
           region: @map.region,
           scale: @map.scale,
-          contact_email: @map.contact_email
+          contact_email: @map.contact_email,
+          images: images
       }
     } unless @map.nil?
 

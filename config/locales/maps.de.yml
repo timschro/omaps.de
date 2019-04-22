@@ -1,0 +1,34 @@
+de:
+  activerecord:
+    models:
+      user: User
+      image: Bild
+      map: Karte
+      map_type:
+        zero: Keine Kartenart
+        one: Eine Kartenart
+        other: Kartenarten
+    attributes:
+      map:
+        title: Titel
+        club: Verein
+        year: Jahr
+        mapper: Kartierer
+        scale: Maßstab
+        contours: Äquidistanz
+        map_type: Art
+        contact_email: Kontakt-Email
+        website: Website
+        description: Beschreibung
+        approved: genehmigt
+        published: Karte veröffentlichen?
+        submitter: Eingestellt von
+        last_editor: Zuletzt bearbeitet von
+        images: Bilder
+        created_at: Erstellungsdatum
+        updated_at: Aktualisierungsdatum
+        identifier: Karten-ID
+        lat: Position
+        lng: Längengrad
+
+

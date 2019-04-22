@@ -51,7 +51,13 @@ gem 'newrelic_rpm'
 
 gem 'i18n-active_record', :require => 'i18n/active_record'
 
+gem 'paper_trail'
 
+gem 'httparty'
+
+gem 'mini_magick'
+
+gem 'image_processing', '~> 1.2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -84,5 +90,11 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'rails_admin', '~> 1.3'
+#gem 'rails_admin_mapbox_field', path: '/Users/timschro/dev/rails_admin_map_field'
+gem 'rails_admin_mapbox_field', git: 'https://github.com/timschro/rails_admin_mapbox_field.git'
+#gem 'rails_admin_google_map', git: 'https://github.com/timschro/rails_admin_google_map.git'
 
-ruby '2.5.3'
+gem "aws-sdk-s3", require: false
+
+
+ruby '2.6.2'

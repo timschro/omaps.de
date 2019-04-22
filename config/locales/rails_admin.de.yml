@@ -33,8 +33,9 @@ de:
       model_not_found: "Model '%{model}' wurde nicht gefunden"
       object_not_found: "%{model} mit Id '%{id}' wurde nicht gefunden"
     table_headers:
-      model_name: "Modellname"
+      model_name: "Name"
       last_used: "zuletzt benutzt"
+      last_created: "Letzter Eintrag"
       records: "Datensatz"
       username: "Nutzer"
       changes: "Änderungen"

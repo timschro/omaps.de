@@ -1,3 +1,17 @@
 // Place all the styles related to the meta controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.prose h1:not(.unprose) {
+  font-size:35px;
+
+}
+.prose h2:not(.unprose), .prose h3:not(.unprose), .prose h4:not(.unprose) {
+  font-size:25px;
+}
+
+.btn--stroke {
+   border-color: #448ee4;
+   border: 1px solid;
+ }

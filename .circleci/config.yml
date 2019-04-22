@@ -3,11 +3,14 @@
 # Check https://circleci.com/docs/2.0/language-ruby/ for more details
 #
 version: 2
+
 jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: circleci/ruby:2.5.3-node-browsers
+      - image: circleci/ruby:2.6.2-node-browsers
+        environment:
+          BUNDLER_VERSION: 2.0.1
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -15,7 +18,8 @@ jobs:
       # - image: circleci/postgres:9.4
       - image: circleci/mysql:5.7.24
         environment:
-          MYSQL_ROOT_PASSWORD: root
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          MYSQL_ROOT_PASSWORD: ''
           MYSQL_DATABASE: omaps_test
 
     working_directory: ~/repo
@@ -35,6 +39,10 @@ jobs:
           name: Wait for DB
           # preinstalled in circleci/* docker image
           command: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
+      - run:
+          name: install bundler
+          command: |
+            gem install bundler:2.0.1
       - run:
           name: install dependencies
           command: |
@@ -70,3 +78,24 @@ jobs:
       - store_artifacts:
           path: /tmp/test-results
           destination: test-results
+  deploy:
+    docker:
+      - image: buildpack-deps:trusty
+    steps:
+      - checkout
+      - run:
+          name: Deploy Master to Heroku
+          command: |
+            git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master

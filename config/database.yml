@@ -14,7 +14,7 @@ mysql: &mysql
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: root
-  password: root
+  password:
   host: localhost
 
 
@@ -58,6 +58,4 @@ test:
 #
 production:
   <<: *mysql
-  database: omaps-2_0_production
-  username: omaps-2_0
-  password: <%= ENV['OMAPS-2_0_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
