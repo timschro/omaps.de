@@ -96,5 +96,7 @@ gem 'rails_admin_mapbox_field', git: 'https://github.com/timschro/rails_admin_ma
 
 gem "aws-sdk-s3", require: false
 
+gem 'honeybadger'
+
 
 ruby '2.6.2'
