@@ -83,7 +83,6 @@ class MapsController < ApplicationController
           type: @map.map_type.title,
           contours: @map.contours,
           description: @map.description,
-          url: map_detail_url(@map.url),
           identifier: @map.identifier,
           map_type: @map.map_type.title,
           mapper: @map.mapper,
