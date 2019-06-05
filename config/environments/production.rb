@@ -77,7 +77,6 @@ Rails.application.configure do
       :password       => ENV['MAILGUN_SMTP_PASSWORD'],
       :domain         => 'omaps.de',
       :authentication => :plain,
-      default_options =>
   }
   ActionMailer::Base.delivery_method = :smtp
 
