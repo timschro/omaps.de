@@ -45,6 +45,7 @@ gem 'actionpack-page_caching'
 gem 'whenever', require: false
 
 gem 'devise'
+gem 'devise-i18n'
 gem 'cancancan', '~> 2.0'
 
 gem 'newrelic_rpm'

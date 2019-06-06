@@ -9,6 +9,9 @@ de:
         one: Eine Kartenart
         other: Kartenarten
     attributes:
+      user:
+        firstname: Vorname
+        lastname: Nachname
       map:
         title: Titel
         club: Verein
