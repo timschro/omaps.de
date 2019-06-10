@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
 
+  has_paper_trail
+
   has_many :maps, :through => :submitter_id
   has_many :maps, :through => :last_editor_id
   has_many :maps
