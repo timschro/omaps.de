@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
   get 'impressum' => 'meta#imprint'
   get 'map/:id' => 'index#index', as: 'map_detail'
+  get 'maps/feed.atom' => 'maps#gone'
   resources :maps, only: [:index, :show] do
     collection do
       get :search

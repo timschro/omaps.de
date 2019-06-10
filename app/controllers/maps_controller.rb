@@ -64,6 +64,13 @@ class MapsController < ApplicationController
 
     @map = Map.published.where(id: params[:id]).last
 
+    puts @map.nil?
+
+    if @map.nil?
+      redirect_to '/', :status => 404
+      return
+    end
+
     images = []
     @map.images.each { |img| images << {url: url_for(img.variant(resize: "200x200"))} }
 
@@ -98,5 +105,11 @@ class MapsController < ApplicationController
       format.json { render json: geojson}
     end
 
+  end
+
+  def gone
+    respond_to do |format|
+      format.all  { render plain: 'URI no longer available', status: 410 }
+    end
   end
 end
