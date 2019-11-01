@@ -21,11 +21,9 @@ class Ability
       can :history, [Map, MapType, Club]
     end
 
-    if user.superadmin?
-      can :read, :all
-      can :manage, :all
-      can :history, :all
-    end
-
+    return unless user.superadmin?
+    can :read, :all
+    can :manage, :all
+    can :history, :all
   end
 end

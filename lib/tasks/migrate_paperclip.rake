@@ -10,7 +10,7 @@ namespace :maps do
           puts image_url
           uri = URI.parse(image_url)
           filename = File.basename(uri.path)
-         map.images.attach(io: open(image_url), filename: filename)
+          map.images.attach(io: open(image_url), filename: filename)
         end
       rescue
         puts 'error'
