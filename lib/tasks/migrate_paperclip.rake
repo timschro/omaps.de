@@ -5,7 +5,7 @@ namespace :maps do
       response = HTTParty.get("http://www.omaps.de/maps/#{map.id}.json")
       begin
         json = JSON.parse(response.body)
-        json["images_urls"].each do |image_url|
+        json['images_urls'].each do |image_url|
           image_url.gsub! 'medium', 'original'
           puts image_url
           uri = URI.parse(image_url)
@@ -13,11 +13,8 @@ namespace :maps do
          map.images.attach(io: open(image_url), filename: filename)
         end
       rescue
-        puts "error"
+        puts 'error'
       end
-
-
     end
-
   end
 end

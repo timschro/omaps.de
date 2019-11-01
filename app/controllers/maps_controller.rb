@@ -1,7 +1,5 @@
 class MapsController < ApplicationController
 
-
-
   def index
     maps = Map.published.includes(:club,:map_type)
       geojson = {
@@ -34,7 +32,7 @@ class MapsController < ApplicationController
 
 
   def search
-    maps = Map.published.includes(:club,:map_type)
+    maps = Map.published.includes(:club, :map_type)
     geojson = {
         type: 'FeatureCollection',
         features: []
@@ -46,8 +44,6 @@ class MapsController < ApplicationController
           text: "#{m.title} (#{m.club.name})",
           center: [m.lng, m.lat]
       }
-
-
     end
 
     expires_in 1.hour, public: true
@@ -57,14 +53,8 @@ class MapsController < ApplicationController
     end
   end
 
-
-
-
   def show
-
     @map = Map.published.where(id: params[:id]).last
-
-    puts @map.nil?
 
     if @map.nil?
       redirect_to '/', :status => 404
@@ -72,7 +62,7 @@ class MapsController < ApplicationController
     end
 
     images = []
-    @map.images.each { |img| images << {url: url_for(img.variant(resize: "200x200"))} }
+    @map.images.each { |img| images << { url: url_for(img.variant(resize: "200x200")) } }
 
     geojson = {}
 
@@ -102,7 +92,7 @@ class MapsController < ApplicationController
 
 
     respond_to do |format|
-      format.json { render json: geojson}
+      format.json { render json: geojson }
     end
 
   end
