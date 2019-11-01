@@ -1,4 +1,3 @@
 class MetaController < ApplicationController
-  def imprint
-  end
+  def imprint; end
 end
