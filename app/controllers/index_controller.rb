@@ -2,12 +2,11 @@ class IndexController < ApplicationController
   def index
     @map = nil
     slug = params[:id]
-    unless slug.nil?
-      if slug.to_i > 0
-        @map = Map.published.where(id: slug).last
-      else
-        @map = Map.published.where(url: slug).last
-      end
-    end
+    return if slug.nil?
+    @map = if slug.to_i.positive?
+             Map.published.where(id: slug).last
+           else
+             Map.published.where(url: slug).last
+           end
   end
 end

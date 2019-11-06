@@ -13,9 +13,9 @@ class Map < ActiveRecord::Base
 
   has_paper_trail
 
-  default_scope {where("lat > 0")}
+  default_scope { where("lat > 0") }
 
-  scope :published, -> {where(published: true)}
+  scope :published, -> { where(published: true) }
 
 
   belongs_to :submitter, :class_name => 'User'
@@ -26,7 +26,7 @@ class Map < ActiveRecord::Base
   validates :title, :scale, :contours, :year, :mapper, :map_type, :club, :lat, :lng, :presence => true
 
   # Format
-  validates :scale, :year, :numericality => {:only_integer => true}
+  validates :scale, :year, :numericality => { :only_integer => true }
   validates :lat, :lng, :contours, :numericality => true
 
 
@@ -70,9 +70,6 @@ class Map < ActiveRecord::Base
   end
 
   rails_admin do
-
-
-
     group :info do
       label "Karteninformationen"
     end
@@ -88,7 +85,6 @@ class Map < ActiveRecord::Base
     group :meta do
       label "Administratives"
     end
-
     field :title do
       group :info
     end
@@ -125,53 +121,34 @@ class Map < ActiveRecord::Base
       end
       help 'Erforderlich. Angabe in Metern. Komma erlaubt (z.B. 2,5).'
     end
-
     field :description do
       group :info
     end
-
     field :lat, :map do
       longitude_field :lng
       mapbox_api_key 'pk.eyJ1Ijoib3JpZW50ZXJhcmUiLCJhIjoiTDg0RE5WZyJ9.OyBqycEeIbDxvsFSP0Pzbw'
       mapbox_style 'mapbox://styles/orienterare/cj731u0fm264z2sqh47snx9ep'
       group :geo
     end
-
-    # field :lat do
-    #   group :geo
-    #   help 'Erforderlich. Bitte vorerst die Koordinate der Karte im Dezimalformat manuell eintragen. Ein Auswahlmechanismus wird später bereitgestellt.'
-    # end
-    # field :lng do
-    #   group :geo
-    #   help 'Erforderlich. Bitte vorerst die Koordinate der Karte im Dezimalformat manuell eintragen. Ein Auswahlmechanismus wird später bereitgestellt.'
-    # end
-
-
     field :images, :multiple_active_storage do
       group :files
     end
-
     field :contact_email do
       group :contact
     end
     field :website do
       group :contact
     end
-
-
     field :published do
       group :meta
       help 'Wenn aktiviert erscheint die Karte in der Übersicht und in der Suche.'
     end
-
-
     field :identifier do
       group :meta
       help 'Bitte Karten ID in der Form "GER-HH201901" eintragen falls verfügbar.'
       visible do
         bindings[:view]._current_user.admin?
       end
-
     end
     field :submitter do
       group :meta
@@ -194,16 +171,25 @@ class Map < ActiveRecord::Base
       help ''
     end
 
-
     list do
-      exclude_fields :created_at, :updated_at, :mapper, :contours, :lat, :lng, :website, :description, :contact_email, :google_map, :images, :size, :approved, :submitter, :last_editor
-
+      exclude_fields :created_at,
+                     :updated_at,
+                     :mapper,
+                     :contours,
+                     :lat,
+                     :lng,
+                     :website,
+                     :description,
+                     :contact_email, :google_map,
+                     :images,
+                     :size,
+                     :approved,
+                     :submitter,
+                     :last_editor
 
       field :identifier do
         column_width 130
       end
-
-
       field :club do
         column_width 150
       end
@@ -216,18 +202,6 @@ class Map < ActiveRecord::Base
       field :published do
         column_width 20
       end
-
     end
-
-    # edit do
-    #   field :google_map, :google_map do
-    #     google_api_key 'AIzaSyApg5YWYo8a9avXl-ICqdgaEoTqt9mz53w'
-    #     default_latitude -34.0
-    #     default_longitude 151.0
-    #     locale 'de'
-    #   end
-    # end
   end
-
-
 end

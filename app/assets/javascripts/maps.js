@@ -324,7 +324,7 @@ map.on('load', function () {
             }
         }
     });
-    map.style.sourceCaches['attribution-layer']._source.attribution = "&copy; OMaps.de - Kartenverzeichnis Orientierungssport Deutschland | <a href='/impressum'>Impressum</a>";
+    map.style.sourceCaches['attribution-layer']._source.attribution = "&copy; OMaps.de - Kartenverzeichnis Orientierungssport Deutschland | <a class='mapbox-improve-map' href='/admin'>OL-Karten eintragen</a> | <a href='/impressum'>Impressum</a>";
 
     map.addControl(new mapboxgl.NavigationControl({
             showCompass: false
