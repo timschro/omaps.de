@@ -91,9 +91,10 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'rails_admin', '~> 1.3'
-# gem 'rails_admin_mapbox_field', path: '/Users/timschro/dev/rails_admin_map_field'
-gem 'rails_admin_mapbox_field', git: 'https://github.com/timschro/rails_admin_mapbox_field.git'
-# gem 'rails_admin_google_map', git: 'https://github.com/timschro/rails_admin_google_map.git'
+
+# gem 'rails_admin_mapbox_field',  path: '/Users/timschro/dev/rails_admin_mapbox_field'
+gem 'rails_admin_mapbox_field','~> 0.0.3', git: 'https://github.com/timschro/rails_admin_mapbox_field.git'
+
 
 gem "aws-sdk-s3", require: false
 
