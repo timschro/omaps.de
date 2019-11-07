@@ -20,5 +20,5 @@
 # Learn more: http://github.com/javan/whenever
 
 every 2.hours do
-  command "rm -rf public/cached_pages"
+  command 'rm -rf public/cached_pages'
 end

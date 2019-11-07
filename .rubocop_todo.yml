@@ -96,7 +96,8 @@ Layout/ExtraSpacing:
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, IndentationWidth.
 # SupportedStyles: special_inside_parentheses, consistent, align_braces
-Layout/IndentHash:
+
+Layout/IndentFirstHashElement:
   Exclude:
     - 'app/controllers/maps_controller.rb'
 

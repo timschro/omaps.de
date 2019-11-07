@@ -1,3 +1,4 @@
+# Ability model for cancan authorization
 class Ability
   include CanCan::Ability
 
@@ -13,15 +14,16 @@ class Ability
 
     can :manage, Map, submitter_id: user.id
 
-    can :access, :rails_admin   # grant access to rails_admin
-    can :read, :dashboard       # grant access to the dashboard
+    can :access, :rails_admin # grant access to rails_admin
+    can :read, :dashboard # grant access to the dashboard
 
-    if user.admin?
-      can :manage, [Map, MapType, Club]
-      can :history, [Map, MapType, Club]
-    end
+    return unless user.admin?
+
+    can :manage, [Map, MapType, Club]
+    can :history, [Map, MapType, Club]
 
     return unless user.superadmin?
+
     can :read, :all
     can :manage, :all
     can :history, :all

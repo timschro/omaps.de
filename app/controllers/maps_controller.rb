@@ -4,6 +4,7 @@ class MapsController < ApplicationController
         type: 'FeatureCollection',
         features: []
     }
+
     Map.published.includes(:club, :map_type).each do |m|
       geojson[:features] << {
           type: 'Feature',
@@ -62,19 +63,15 @@ class MapsController < ApplicationController
     @map.images.each { |img| images << { url: url_for(img.variant(resize: '200x200')) } }
 
     geojson = {}
-
     geojson = geojson(@map, images) unless @map.nil?
-
-
     respond_to do |format|
       format.json {render json: geojson}
     end
-
   end
 
   def gone
     respond_to do |format|
-      format.all {render plain: 'URI no longer available', status: 410}
+      format.all { render plain: 'URI no longer available', status: 410 }
     end
   end
 

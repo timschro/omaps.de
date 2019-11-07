@@ -26,9 +26,9 @@ class Map < ActiveRecord::Base
   validates :title, :scale, :contours, :year, :mapper, :map_type, :club, :lat, :lng, :presence => true
 
   # Format
-  validates :scale, :year, :numericality => { :only_integer => true }
-  validates :lat, :lng, :contours, :numericality => true
 
+  validates :scale, :year, numericality: { only_integer: true }
+  validates :lat, :lng, :contours, numericality: true
 
   def to_param
     url
@@ -180,7 +180,8 @@ class Map < ActiveRecord::Base
                      :lng,
                      :website,
                      :description,
-                     :contact_email, :google_map,
+                     :contact_email,
+                     :google_map,
                      :images,
                      :size,
                      :approved,

@@ -1,1 +1,7 @@
 inherit_from: .rubocop_todo.yml
+
+AllCops:
+  Exclude:
+    - 'lib/tasks/migrate_paperclip.rake'
+    -  'db/schema.rb'
+    - 'db/migrate/*'
