@@ -1,4 +1,4 @@
+# Controller for Meta pages
 class MetaController < ApplicationController
-  def imprint
-  end
+  def imprint; end
 end

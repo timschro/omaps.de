@@ -35,7 +35,6 @@ class User < ActiveRecord::Base
 
 
   rails_admin do
-
     include_fields :lastname, :firstname, :email, :last_sign_in_at, :sign_in_count, :is_admin, :is_superadmin
 
 
@@ -51,9 +50,7 @@ class User < ActiveRecord::Base
 
       field :email do
         column_width 150
-
       end
-
     end
 
     # edit do

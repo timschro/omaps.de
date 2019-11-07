@@ -19,7 +19,7 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-#gem 'turbolinks', '~> 5'
+# gem 'turbolinks', '~> 5'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
@@ -50,7 +50,7 @@ gem 'cancancan', '~> 3.0'
 
 gem 'newrelic_rpm'
 
-gem 'i18n-active_record', :require => 'i18n/active_record'
+gem 'i18n-active_record', require: 'i18n/active_record'
 
 gem 'paper_trail'
 
@@ -63,10 +63,8 @@ gem 'image_processing', '~> 1.2'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-
   gem 'rspec'
   gem 'rspec_junit_formatter'
-
 end
 
 group :development do
@@ -91,13 +89,12 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'rails_admin', '~> 1.3'
-#gem 'rails_admin_mapbox_field', path: '/Users/timschro/dev/rails_admin_map_field'
+# gem 'rails_admin_mapbox_field', path: '/Users/timschro/dev/rails_admin_map_field'
 gem 'rails_admin_mapbox_field', git: 'https://github.com/timschro/rails_admin_mapbox_field.git'
-#gem 'rails_admin_google_map', git: 'https://github.com/timschro/rails_admin_google_map.git'
+# gem 'rails_admin_google_map', git: 'https://github.com/timschro/rails_admin_google_map.git'
 
-gem "aws-sdk-s3", require: false
+gem 'aws-sdk-s3', require: false
 
 gem 'honeybadger'
-
 
 ruby '2.6.2'

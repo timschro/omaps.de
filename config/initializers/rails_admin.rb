@@ -1,7 +1,6 @@
 RailsAdmin.config do |config|
-
   config.parent_controller = 'ApplicationController'
-  config.main_app_name = ["OMaps", "Administration"]
+  config.main_app_name = %w[OMaps Administration]
 
   require 'i18n'
   I18n.default_locale = :de
@@ -23,8 +22,7 @@ RailsAdmin.config do |config|
 
   ## == PaperTrail ==
   config.audit_with :paper_trail, 'User', 'PaperTrail::Version' # PaperTrail >= 3.0.0
-  PAPER_TRAIL_AUDIT_MODEL = ['Map', 'User']
-
+  PAPER_TRAIL_AUDIT_MODEL = %w[Map User].freeze
 
   ### More at https://github.com/sferik/rails_admin/wiki/Base-configuration
 
@@ -36,12 +34,12 @@ RailsAdmin.config do |config|
     dashboard                     # mandatory
     index                         # mandatory
     new
-    #export
+    # export
     bulk_delete
     show
     edit
     delete
-    #show_in_app
+    # show_in_app
 
     history_index do
       only PAPER_TRAIL_AUDIT_MODEL
@@ -52,9 +50,9 @@ RailsAdmin.config do |config|
   end
 
   config.model 'Map' do
-    label "Karte"
-    label_plural "Karten"
-    weight -1
+    label 'Karte'
+    label_plural 'Karten'
+    weight(-1)
   end
 
   config.model 'MapType' do
@@ -69,7 +67,5 @@ RailsAdmin.config do |config|
     end
   end
 
-  config.excluded_models = ["State", "Comment", "Image"]
-
-
+  config.excluded_models = %w[State Comment Image]
 end

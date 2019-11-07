@@ -13,11 +13,8 @@ namespace :maps do
          map.images.attach(io: open(image_url), filename: filename)
         end
       rescue
-        puts "error"
+        puts 'error'
       end
-
-
     end
-
   end
 end

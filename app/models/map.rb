@@ -13,9 +13,9 @@ class Map < ActiveRecord::Base
 
   has_paper_trail
 
-  default_scope {where("lat > 0")}
+  default_scope { where("lat > 0") }
 
-  scope :published, -> {where(published: true)}
+  scope :published, -> { where(published: true) }
 
 
   belongs_to :submitter, :class_name => 'User'
@@ -26,8 +26,8 @@ class Map < ActiveRecord::Base
   validates :title, :scale, :contours, :year, :mapper, :map_type, :club, :lat, :lng, :presence => true
 
   # Format
-  validates :scale, :year, :numericality => {:only_integer => true}
-  validates :lat, :lng, :contours, :numericality => true
+  validates :scale, :year, numericality: { only_integer: true }
+  validates :lat, :lng, :contours, numericality: true
 
 
   def to_param
@@ -70,9 +70,6 @@ class Map < ActiveRecord::Base
   end
 
   rails_admin do
-
-
-
     group :info do
       label "Karteninformationen"
     end
@@ -137,16 +134,6 @@ class Map < ActiveRecord::Base
       group :geo
     end
 
-    # field :lat do
-    #   group :geo
-    #   help 'Erforderlich. Bitte vorerst die Koordinate der Karte im Dezimalformat manuell eintragen. Ein Auswahlmechanismus wird später bereitgestellt.'
-    # end
-    # field :lng do
-    #   group :geo
-    #   help 'Erforderlich. Bitte vorerst die Koordinate der Karte im Dezimalformat manuell eintragen. Ein Auswahlmechanismus wird später bereitgestellt.'
-    # end
-
-
     field :images, :multiple_active_storage do
       group :files
     end
@@ -171,7 +158,6 @@ class Map < ActiveRecord::Base
       visible do
         bindings[:view]._current_user.admin?
       end
-
     end
     field :submitter do
       group :meta
@@ -196,7 +182,21 @@ class Map < ActiveRecord::Base
 
 
     list do
-      exclude_fields :created_at, :updated_at, :mapper, :contours, :lat, :lng, :website, :description, :contact_email, :google_map, :images, :size, :approved, :submitter, :last_editor
+      exclude_fields :created_at,
+                     :updated_at,
+                     :mapper,
+                     :contours,
+                     :lat,
+                     :lng,
+                     :website,
+                     :description,
+                     :contact_email,
+                     :google_map,
+                     :images,
+                     :size,
+                     :approved,
+                     :submitter,
+                     :last_editor
 
 
       field :identifier do
@@ -216,7 +216,6 @@ class Map < ActiveRecord::Base
       field :published do
         column_width 20
       end
-
     end
 
     # edit do

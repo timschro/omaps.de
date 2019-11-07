@@ -24,7 +24,7 @@ Rails.application.configure do
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = Uglifier.new(harmony: true)
-  #config.assets.js_compressor = :uglifier
+  # config.assets.js_compressor = :uglifier
   #
   #
   # config.assets.css_compressor = :sass
@@ -71,22 +71,20 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
 
   ActionMailer::Base.smtp_settings = {
-      :port           => ENV['MAILGUN_SMTP_PORT'],
-      :address        => ENV['MAILGUN_SMTP_SERVER'],
-      :user_name      => ENV['MAILGUN_SMTP_LOGIN'],
-      :password       => ENV['MAILGUN_SMTP_PASSWORD'],
-      :domain         => 'omaps.de',
-      :authentication => :plain,
+    port: ENV['MAILGUN_SMTP_PORT'],
+    address: ENV['MAILGUN_SMTP_SERVER'],
+    user_name: ENV['MAILGUN_SMTP_LOGIN'],
+    password: ENV['MAILGUN_SMTP_PASSWORD'],
+    domain: 'omaps.de',
+    authentication: :plain
   }
   ActionMailer::Base.delivery_method = :smtp
 
-  config.action_mailer.default_url_options = { :host => "www.omaps.de" }
+  config.action_mailer.default_url_options = { host: 'www.omaps.de' }
 
   config.action_mailer.default_options = {
-      from: "noreply@omaps.de"
+    from: "noreply@omaps.de"
   }
-
-
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
