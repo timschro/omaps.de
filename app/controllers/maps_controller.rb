@@ -24,7 +24,7 @@ class MapsController < ApplicationController
 
     expires_in 1.hour, public: true
     respond_to do |format|
-      format.json { render json: geojson }
+      format.json {render json: geojson}
     end
   end
 
@@ -42,23 +42,17 @@ class MapsController < ApplicationController
           text: "#{m.title} (#{m.club.name})",
           center: [m.lng, m.lat]
       }
-
-
     end
 
     expires_in 1.hour, public: true
 
     respond_to do |format|
-      format.json { render json: geojson }
+      format.json {render json: geojson}
     end
   end
 
-
   def show
-
     @map = Map.published.where(id: params[:id]).last
-
-    puts @map.nil?
 
     if @map.nil?
       redirect_to '/', :status => 404
@@ -69,41 +63,43 @@ class MapsController < ApplicationController
     @map.images.each { |img| images << { url: url_for(img.variant(resize: '200x200')) } }
 
     geojson = {}
-
-    geojson = {
-        type: 'Feature',
-        geometry: {
-            type: 'Point',
-            coordinates: [@map.lng, @map.lat]
-        },
-        properties: {
-            id: @map.id,
-            name: @map.title,
-            club: @map.club.name,
-            year: @map.year,
-            type: @map.map_type.title,
-            contours: @map.contours,
-            description: @map.description,
-            identifier: @map.identifier,
-            map_type: @map.map_type.title,
-            mapper: @map.mapper,
-            region: @map.region,
-            scale: @map.scale,
-            contact_email: @map.contact_email,
-            images: images
-        }
-    } unless @map.nil?
-
-
+    geojson = geojson(@map, images) unless @map.nil?
     respond_to do |format|
-      format.json { render json: geojson }
+      format.json {render json: geojson}
     end
-
   end
 
   def gone
     respond_to do |format|
       format.all { render plain: 'URI no longer available', status: 410 }
     end
+  end
+
+  private
+
+  def geojson(map, images)
+    {
+        type: 'Feature',
+        geometry: {
+            type: 'Point',
+            coordinates: [map.lng, map.lat]
+        },
+        properties: {
+            id: map.id,
+            name: map.title,
+            club: map.club.name,
+            year: map.year,
+            type: map.map_type.title,
+            contours: map.contours,
+            description: map.description,
+            identifier: map.identifier,
+            map_type: map.map_type.title,
+            mapper: map.mapper,
+            region: map.region,
+            scale: map.scale,
+            contact_email: map.contact_email,
+            images: images
+        }
+    }
   end
 end

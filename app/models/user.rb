@@ -37,7 +37,6 @@ class User < ActiveRecord::Base
   rails_admin do
     include_fields :lastname, :firstname, :email, :last_sign_in_at, :sign_in_count, :is_admin, :is_superadmin
 
-
     list do
       exclude_fields :created_at, :updated_at
       field :firstname do
@@ -62,5 +61,4 @@ class User < ActiveRecord::Base
     #   end
     # end
   end
-
 end
