@@ -4,11 +4,16 @@ de:
       user: User
       image: Bild
       map: Karte
+      discipline: Disziplin
       map_type:
         zero: Keine Kartenart
         one: Eine Kartenart
         other: Kartenarten
     attributes:
+      discipline:
+        name: Name
+        short_name: Abkürzung
+        maps: Karten
       user:
         firstname: Vorname
         lastname: Nachname
@@ -19,7 +24,8 @@ de:
         mapper: Kartierer
         scale: Maßstab
         contours: Äquidistanz
-        map_type: Art
+        discipline: Disziplin
+        map_type: Kartenart
         contact_email: Kontakt-Email
         website: Website
         description: Beschreibung

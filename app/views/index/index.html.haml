@@ -7,7 +7,7 @@
 
 %script#popup-template{type: "text/x-handlebars-template"}
   %h2.txt-m.txt-bold {{title}}
-  %h3.txt-m {{type}}
+  %h3.txt-m {{discipline}} {{type}}
   %p.txt-s &copy; {{year}} {{club}}
 
 %script#entry-template{type: "text/x-handlebars-template"}
@@ -18,7 +18,7 @@
           %svg.icon.link.color-darken50
             %use{"xlink:href" => "#icon-close"}
         %h2.txt-m.txt-bold {{name}}
-        %h3.txt-m {{map_type}}
+        %h3.txt-m {{discipline}} {{map_type}}
         {{#if club}}
         %h3.txt-s.txt-bold.mt6 &copy; {{year}} {{club}}
         {{/if}}

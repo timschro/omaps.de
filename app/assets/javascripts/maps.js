@@ -276,7 +276,8 @@ map.on('load', function () {
                 title: e.features[0].properties.name,
                 year: e.features[0].properties.year,
                 club: e.features[0].properties.club,
-                type: e.features[0].properties.type
+                type: e.features[0].properties.type,
+                discipline: e.features[0].properties.discipline
             };
             var coordinates = e.features[0].geometry.coordinates.slice();
             var description = templatePopup(data);
