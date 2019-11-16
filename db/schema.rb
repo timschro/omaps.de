@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_14_111857) do
+ActiveRecord::Schema.define(version: 2019_11_16_212744) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -47,6 +47,13 @@ ActiveRecord::Schema.define(version: 2019_04_14_111857) do
     t.boolean "void"
     t.string "submitter_email"
     t.integer "map_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "disciplines", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
+    t.string "name"
+    t.string "short_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -115,6 +122,7 @@ ActiveRecord::Schema.define(version: 2019_04_14_111857) do
     t.integer "submitter_id"
     t.integer "last_editor_id"
     t.text "google_map"
+    t.integer "discipline_id"
   end
 
   create_table "states", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|

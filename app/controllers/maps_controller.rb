@@ -17,6 +17,7 @@ class MapsController < ApplicationController
               name: m.title,
               club: m.club.name,
               year: m.year,
+              discipline: m.discipline.nil? ? "" : m.discipline.name,
               type: m.map_type.title
           }
       }
@@ -93,6 +94,7 @@ class MapsController < ApplicationController
             contours: map.contours,
             description: map.description,
             identifier: map.identifier,
+            discipline: map.discipline.nil? ? "" : map.discipline.name,
             map_type: map.map_type.title,
             mapper: map.mapper,
             region: map.region,

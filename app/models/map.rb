@@ -3,6 +3,7 @@ class Map < ActiveRecord::Base
 
   belongs_to :club
   belongs_to :map_type
+  belongs_to :discipline
 
   has_many_attached :images
   attr_accessor :remove_images
@@ -89,6 +90,9 @@ class Map < ActiveRecord::Base
       group :info
     end
     field :club do
+      group :info
+    end
+    field :discipline do
       group :info
     end
     field :map_type do
