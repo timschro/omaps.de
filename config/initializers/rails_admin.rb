@@ -1,6 +1,11 @@
 RailsAdmin.config do |config|
+  
+  
   config.parent_controller = 'ApplicationController'
   config.main_app_name = %w[OMaps Administration]
+  
+  config.middleware.use ActionDispatch::Session::CookieStore, {:key=>"_omaps_session", :cookie_only=>true}
+  
 
   require 'i18n'
   I18n.default_locale = :de
