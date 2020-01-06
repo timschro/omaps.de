@@ -14,8 +14,11 @@ module Omaps
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use ActionDispatch::Flash
+    config.middleware.use Rack::MethodOverride
     config.middleware.use ActionDispatch::Session::CookieStore, {:key=>"_omaps_session", :cookie_only=>true}
-    
+
     
     config.load_defaults 5.2
 
