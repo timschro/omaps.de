@@ -9,10 +9,13 @@ class Ability
     can :new, Map
     can :read, Club
     can :read, MapType
+    can :read, Discipline
+
     can :new, Club
     can :dashboard, :all
 
     can :manage, Map, submitter_id: user.id
+    can :manage, Map, last_editor_id: user.id
 
     can :access, :rails_admin # grant access to rails_admin
     can :read, :dashboard # grant access to the dashboard
