@@ -9,11 +9,18 @@ class Ability
     can :new, Map
     can :create, Map
 
-    can :manage, Map, submitter_id: user.id
-    can :manage, Map, last_editor_id: user.id
-
+    can :read, Club
     can :read, MapType
     can :read, Discipline
+    can :new, Club
+    can :create, Club
+    can :dashboard, :all
+
+
+    can :manage, Map.visible do |map|
+      map.belongs_to_user user
+    end
+
 
     can :read, Club
     can :new, Club
@@ -25,8 +32,9 @@ class Ability
 
     return unless user.admin?
 
-    can :manage, [Map, MapType, Club]
-    can :history, [Map, MapType, Club]
+    can :manage, [Map, MapType, Club, Discipline]
+    can :read, User
+    can :history, [Map, MapType, Club, Discipline]
 
     return unless user.superadmin?
 
