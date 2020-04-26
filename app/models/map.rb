@@ -4,12 +4,14 @@ class Map < ActiveRecord::Base
   belongs_to :club
   belongs_to :map_type
   belongs_to :discipline
+  belongs_to :last_editor, class_name: 'User', inverse_of: :maps
+
+
 
   has_many_attached :images
   attr_accessor :remove_images
 
 
-  before_validation :set_last_editor, on: :create
 
 
   has_paper_trail
@@ -18,9 +20,9 @@ class Map < ActiveRecord::Base
 
   scope :published, -> { where(published: true) }
 
+  scope :visible, -> { where("lat > 0") }
 
-  belongs_to :submitter, :class_name => 'User'
-  belongs_to :last_editor, :class_name => 'User'
+
 
 
   # Validations
@@ -30,6 +32,10 @@ class Map < ActiveRecord::Base
 
   validates :scale, :year, numericality: { only_integer: true }
   validates :lat, :lng, :contours, numericality: true
+
+  before_save :add_editor
+
+
 
   def to_param
     url
@@ -59,10 +65,22 @@ class Map < ActiveRecord::Base
   end
 
 
-  def set_last_editor
-    self.last_editor = self.submitter
+
+  def belongs_to_user user
+    !self.versions.where(whodunnit: user.id.to_s).empty?
   end
 
+  def add_editor
+    logger.debug("add_editor?")
+    if last_editor_id_changed?
+      logger.debug("last_editor_id_changed?")
+      PaperTrail.request(whodunnit: last_editor_id.to_s) do
+        restore_last_editor_id!
+        paper_trail.save_with_version
+      end
+
+    end
+  end
 
   after_save do
     Array(remove_images).each do |id|
@@ -154,25 +172,26 @@ class Map < ActiveRecord::Base
         bindings[:view]._current_user.admin?
       end
     end
-    field :submitter do
-      group :meta
-      read_only true
-      help ''
-    end
+
     field :created_at do
       group :meta
       read_only true
       help ''
     end
-    field :last_editor do
-      group :meta
-      read_only true
-      help ''
-    end
+
     field :updated_at do
       group :meta
       read_only true
       help ''
+    end
+
+    field :last_editor do
+      group :meta
+      label 'Neuer Bearbeiter'
+      visible do
+        bindings[:view]._current_user.admin?
+      end
+      help 'Soll ein zusätzlicher User diesen Datensatz bearbeiten können bitte hier entsprechend auswählen und speichern. Es können alle User die in der History enthalten sind den jeweiligen Datensatz bearbeiten.'
     end
 
     list do
@@ -188,9 +207,7 @@ class Map < ActiveRecord::Base
                      :google_map,
                      :images,
                      :size,
-                     :approved,
-                     :submitter,
-                     :last_editor
+                     :approved
 
       field :identifier do
         column_width 130

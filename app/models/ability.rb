@@ -7,20 +7,27 @@ class Ability
 
     can :read, Map
     can :new, Map
+    can :create, Map
     can :read, Club
     can :read, MapType
+    can :read, Discipline
     can :new, Club
+    can :create, Club
     can :dashboard, :all
 
-    can :manage, Map, submitter_id: user.id
+
+    can :manage, Map.visible do |map|
+      map.belongs_to_user user
+    end
 
     can :access, :rails_admin # grant access to rails_admin
     can :read, :dashboard # grant access to the dashboard
 
     return unless user.admin?
 
-    can :manage, [Map, MapType, Club]
-    can :history, [Map, MapType, Club]
+    can :manage, [Map, MapType, Club, Discipline]
+    can :read, User
+    can :history, [Map, MapType, Club, Discipline]
 
     return unless user.superadmin?
 

@@ -8,8 +8,7 @@ class User < ActiveRecord::Base
 
   has_paper_trail
 
-  has_many :maps, :through => :submitter_id
-  has_many :maps, :through => :last_editor_id
+  has_many :maps, through: :last_editor_id, inverse_of: :map
   has_many :maps
 
 
