@@ -8,6 +8,7 @@ class Ability
     can :read, Map
     can :new, Map
     can :create, Map
+
     can :read, Club
     can :read, MapType
     can :read, Discipline
@@ -20,6 +21,12 @@ class Ability
       map.belongs_to_user user
     end
 
+
+    can :read, Club
+    can :new, Club
+    can :create, Club
+
+    can :dashboard, :all
     can :access, :rails_admin # grant access to rails_admin
     can :read, :dashboard # grant access to the dashboard
 
