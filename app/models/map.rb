@@ -4,7 +4,6 @@ class Map < ActiveRecord::Base
   belongs_to :club
   belongs_to :map_type
   belongs_to :discipline
-  belongs_to :last_editor, class_name: 'User', inverse_of: :maps
 
 
 
@@ -34,6 +33,11 @@ class Map < ActiveRecord::Base
   validates :lat, :lng, :contours, numericality: true
 
   before_save :add_editor
+
+
+  after_initialize do |obj|
+   # obj.last_editor_id = nil
+  end
 
 
 
@@ -185,14 +189,6 @@ class Map < ActiveRecord::Base
       help ''
     end
 
-    field :last_editor do
-      group :meta
-      label 'Neuer Bearbeiter'
-      visible do
-        bindings[:view]._current_user.admin?
-      end
-      help 'Soll ein zusätzlicher User diesen Datensatz bearbeiten können bitte hier entsprechend auswählen und speichern. Es können alle User die in der History enthalten sind den jeweiligen Datensatz bearbeiten.'
-    end
 
     list do
       exclude_fields :created_at,
