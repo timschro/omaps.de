@@ -3,6 +3,8 @@ class Club < ActiveRecord::Base
   has_many :maps
 
   #belongs_to :state
+  
+  validates :name, presence: true
 
   rails_admin do
     label 'Verein'
