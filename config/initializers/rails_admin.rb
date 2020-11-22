@@ -67,5 +67,5 @@ RailsAdmin.config do |config|
     end
   end
 
-  config.excluded_models = %w[State Comment Image]
+  config.excluded_models = %w[State Comment Image Discipline]
 end
