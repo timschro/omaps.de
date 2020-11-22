@@ -9,9 +9,9 @@ class Club < ActiveRecord::Base
   rails_admin do
     label 'Verein'
     label_plural 'Vereine'
-    exclude_fields :maps, :state
+    exclude_fields :maps, :state_id
     list do
-      exclude_fields :created_at, :updated_at, :email
+      exclude_fields :created_at, :updated_at, :email, :state
     end
   end
 
