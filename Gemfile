@@ -97,4 +97,4 @@ gem 'aws-sdk-s3', require: false
 
 gem 'honeybadger'
 
-ruby '2.6.2'
+ruby '2.6.6'
