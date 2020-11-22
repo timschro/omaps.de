@@ -2,7 +2,7 @@ class Club < ActiveRecord::Base
 
   has_many :maps
 
-  belongs_to :state
+  #belongs_to :state
 
   rails_admin do
     label 'Verein'
