@@ -48,7 +48,6 @@ gem 'devise'
 gem 'devise-i18n'
 gem 'cancancan', '~> 3.0'
 
-gem 'newrelic_rpm'
 
 gem 'i18n-active_record', require: 'i18n/active_record'
 
