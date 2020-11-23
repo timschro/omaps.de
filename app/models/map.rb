@@ -134,7 +134,7 @@ class Map < ActiveRecord::Base
       # pretty_value do
       #   "1:#{value}"
       # end
-      help 'Erforderlich. Angabe von 1:xxxxxx.'
+      help 'Erforderlich. Angabe von 1:xxxxxx. Bitte nur die Maßstabszahl eintragen, also z.B. 15000 oder 4000.'
     end
     field :contours do
       group :info
@@ -145,7 +145,7 @@ class Map < ActiveRecord::Base
       pretty_value do
         value.to_s.gsub('.', I18n.t('number.format.separator'))
       end
-      help 'Erforderlich. Angabe in Metern. Komma erlaubt (z.B. 2,5).'
+      help 'Erforderlich. Angabe in Metern. Komma erlaubt. Bitte den reinen Zahlenwert, ohne Meter-Angabe, eintrage. Z.B.: 5 oder 2,5.'
     end
     field :description do
       group :info
