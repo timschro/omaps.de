@@ -1,7 +1,6 @@
 {
   "addons": [
     "cleardb",
-    "newrelic",
     "scheduler"
   ],
   "buildpacks": [
@@ -17,15 +16,6 @@
       "required": true
     },
     "LANG": {
-      "required": true
-    },
-    "NEW_RELIC_APP_NAME": {
-      "required": true
-    },
-    "NEW_RELIC_LICENSE_KEY": {
-      "required": true
-    },
-    "NEW_RELIC_LOG": {
       "required": true
     },
     "RAILS_ENV": {
