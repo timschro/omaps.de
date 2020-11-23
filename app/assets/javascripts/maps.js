@@ -183,6 +183,7 @@ map.on('load', function () {
         clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)
     });
 
+
     map.addLayer({
         id: "clusters",
         type: "circle",
@@ -228,7 +229,7 @@ map.on('load', function () {
         source: "maps",
         filter: ["!has", "point_count"],
         paint: {
-            "circle-color": "#fd207e",
+            "circle-color": "#fd20  7e",
             "circle-radius": 10,
             "circle-stroke-width": 2,
             "circle-stroke-color": "#fff"
@@ -325,7 +326,7 @@ map.on('load', function () {
             }
         }
     });
-    map.style.sourceCaches['attribution-layer']._source.attribution = "&copy; OMaps.de - Kartenverzeichnis Orientierungssport Deutschland | <b><a href='/admin'>OL-Karten eintragen</a></b> | <a href='/impressum'>Impressum</a>";
+    map.style.sourceCaches['attribution-layer']._source.attribution = " <a class='btn btn--s btn--stroke round' href='/admin'>OL-Karten eintragen</a> | &copy; OMaps.de - Kartenverzeichnis Orientierungssport Deutschland | <a href='/impressum'>Impressum</a>";
 
     map.addControl(new mapboxgl.NavigationControl({
             showCompass: false
@@ -359,8 +360,7 @@ class AddMapControl {
         };
         this._container = document.createElement('div');
         this._container.className = 'mapboxgl-ctrl mapboxgl-ctrl-group';
-        //TODO Re-add button when admin panel is ready.
-        //this._container.appendChild(this._btn);
+        this._container.appendChild(this._btn);
         return this._container;
     }
     onRemove() {
