@@ -326,7 +326,7 @@ map.on('load', function () {
             }
         }
     });
-    map.style.sourceCaches['attribution-layer']._source.attribution = " <a class='btn btn--s btn--stroke round' href='/admin'>OL-Karten eintragen</a> | &copy; OMaps.de - Kartenverzeichnis Orientierungssport Deutschland | <a href='/impressum'>Impressum</a>";
+    map.style.sourceCaches['attribution-layer']._source.attribution = " <a href='/admin'><b>Administration</b></a> | &copy; OMaps.de - Kartenverzeichnis Orientierungssport Deutschland | <a href='/impressum'><b>Impressum</b></a>";
 
     map.addControl(new mapboxgl.NavigationControl({
             showCompass: false
@@ -335,7 +335,7 @@ map.on('load', function () {
 
     const addMapControl = new AddMapControl();
 
-    map.addControl(addMapControl, "bottom-right");
+    map.addControl(addMapControl, "top-left");
 
 
     geocoder.on('result', function(ev) {
