@@ -58,4 +58,4 @@ test:
 #
 production:
   <<: *mysql
-  url: <%= ENV['DATABASE_URL'] %>
+  database: omaps_development
