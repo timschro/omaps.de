@@ -97,5 +97,6 @@ gem 'aws-sdk-s3', require: false
 gem 'honeybadger'
 
 gem "barnes"
+gem 'scout_apm'
 
 ruby '2.6.6'

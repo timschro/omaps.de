@@ -61,6 +61,7 @@ GEM
     archive-zip (0.12.0)
       io-like (~> 0.3.0)
     arel (9.0.0)
+    ast (2.4.1)
     aws-eventstream (1.1.0)
     aws-partitions (1.410.0)
     aws-sdk-core (3.110.0)
@@ -190,6 +191,8 @@ GEM
     paper_trail (11.1.0)
       activerecord (>= 5.2)
       request_store (~> 1.1)
+    parser (3.0.0.0)
+      ast (~> 2.4.1)
     public_suffix (4.0.6)
     puma (4.3.7)
       nio4r (~> 2.0)
@@ -283,6 +286,8 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    scout_apm (4.0.0)
+      parser
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
@@ -355,6 +360,7 @@ DEPENDENCIES
   rspec
   rspec_junit_formatter
   sass-rails (~> 5.0)
+  scout_apm
   selenium-webdriver
   spring
   spring-watcher-listen (~> 2.0.0)
