@@ -31,7 +31,9 @@ RailsAdmin.config do |config|
   config.show_gravatar = true
 
   config.actions do
-    dashboard                     # mandatory
+    dashboard do
+      statistics true
+    end
     index                         # mandatory
     new
     # export
@@ -41,9 +43,7 @@ RailsAdmin.config do |config|
     delete
     # show_in_app
 
-    history_index do
-      only PAPER_TRAIL_AUDIT_MODEL
-    end
+
     history_show do
       only PAPER_TRAIL_AUDIT_MODEL
     end
