@@ -98,5 +98,6 @@ gem 'honeybadger'
 
 gem "barnes"
 gem 'scout_apm'
+gem "webpacker"
 
 ruby '2.6.6'
