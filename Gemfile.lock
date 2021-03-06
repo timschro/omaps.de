@@ -75,15 +75,9 @@ GEM
     archive-zip (0.12.0)
       io-like (~> 0.3.0)
     ast (2.4.2)
-<<<<<<< HEAD
     aws-eventstream (1.1.1)
     aws-partitions (1.431.1)
     aws-sdk-core (3.112.1)
-=======
-    aws-eventstream (1.1.0)
-    aws-partitions (1.426.0)
-    aws-sdk-core (3.112.0)
->>>>>>> 92135256894905f33f3c8218b8880a8386972c36
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.239.0)
       aws-sigv4 (~> 1.1)
@@ -91,11 +85,7 @@ GEM
     aws-sdk-kms (1.42.0)
       aws-sdk-core (~> 3, >= 3.112.0)
       aws-sigv4 (~> 1.1)
-<<<<<<< HEAD
     aws-sdk-s3 (1.89.0)
-=======
-    aws-sdk-s3 (1.88.0)
->>>>>>> 92135256894905f33f3c8218b8880a8386972c36
       aws-sdk-core (~> 3, >= 3.112.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.1)
@@ -154,11 +144,7 @@ GEM
     httparty (0.18.1)
       mime-types (~> 3.0)
       multi_xml (>= 0.5.2)
-<<<<<<< HEAD
     i18n (1.8.9)
-=======
-    i18n (1.8.8)
->>>>>>> 92135256894905f33f3c8218b8880a8386972c36
       concurrent-ruby (~> 1.0)
     i18n-active_record (0.4.0)
       i18n (>= 0.5.0)
@@ -211,11 +197,7 @@ GEM
     multi_xml (0.6.0)
     mysql2 (0.5.3)
     nested_form (0.3.2)
-<<<<<<< HEAD
     nio4r (2.5.7)
-=======
-    nio4r (2.5.5)
->>>>>>> 92135256894905f33f3c8218b8880a8386972c36
     nokogiri (1.11.1)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
@@ -279,11 +261,7 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
-<<<<<<< HEAD
     regexp_parser (2.1.1)
-=======
-    regexp_parser (2.0.3)
->>>>>>> 92135256894905f33f3c8218b8880a8386972c36
     remotipart (1.4.4)
     request_store (1.5.0)
       rack (>= 1.4)
