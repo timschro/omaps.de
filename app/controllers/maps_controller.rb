@@ -4,26 +4,14 @@ class MapsController < ApplicationController
         type: 'FeatureCollection',
         features: []
     }
-
-    Map.published.includes(:club, :map_type).each do |m|
-      geojson[:features] << {
-          type: 'Feature',
-          geometry: {
-              type: 'Point',
-              coordinates: [m.lng, m.lat]
-          },
-          properties: {
-              id: m.id,
-              name: m.title,
-              club: m.club.name,
-              year: m.year,
-              discipline: m.discipline.nil? ? "" : m.discipline.name,
-              type: m.map_type.title
-          }
-      }
+    
+    
+    Map.published.each do |m|
+      json = REDIS.get("m_#{m.id}")
+      geojson[:features] << JSON.parse(json)
     end
 
-    expires_in 1.hour, public: true
+    expires_in 15.minutes, public: true
     respond_to do |format|
       format.json {render json: geojson}
     end
@@ -31,21 +19,17 @@ class MapsController < ApplicationController
 
 
   def search
-    maps = Map.published.includes(:club, :map_type)
+   
     geojson = {
         type: 'FeatureCollection',
         features: []
     }
-    maps.each do |m|
-      geojson[:features] << {
-          type: 'Feature',
-          id: "omaps.#{m.id}",
-          text: "#{m.title} (#{m.club.name})",
-          center: [m.lng, m.lat]
-      }
+    Map.published.each do |m|
+      json = REDIS.get("s_#{m.id}")
+      geojson[:features] << JSON.parse(json)
     end
 
-    expires_in 1.hour, public: true
+    expires_in 15.minutes, public: true
 
     respond_to do |format|
       format.json {render json: geojson}
@@ -53,20 +37,16 @@ class MapsController < ApplicationController
   end
 
   def show
-    @map = Map.published.where(id: params[:id]).last
+    map_id = params[:id]
 
-    if @map.nil?
+    if map_id.nil? || Map.find(map_id).nil? || !Map.find(map_id).published?
       redirect_to '/', :status => 404
       return
     end
 
-    images = []
-    @map.images.each { |img| images << { url: url_for(img.variant(resize: '200x200')) } }
-
-    geojson = {}
-    geojson = geojson(@map, images) unless @map.nil?
+    json = REDIS.get("map_#{map_id}")
     respond_to do |format|
-      format.json {render json: geojson}
+      format.json {render json: json}
     end
   end
 
@@ -76,32 +56,4 @@ class MapsController < ApplicationController
     end
   end
 
-  private
-
-  def geojson(map, images)
-    {
-        type: 'Feature',
-        geometry: {
-            type: 'Point',
-            coordinates: [map.lng, map.lat]
-        },
-        properties: {
-            id: map.id,
-            name: map.title,
-            club: map.club.name,
-            year: map.year,
-            type: map.map_type.title,
-            contours: map.contours,
-            description: map.description,
-            identifier: map.identifier,
-            discipline: map.discipline.nil? ? "" : map.discipline.name,
-            map_type: map.map_type.title,
-            mapper: map.mapper,
-            region: map.region,
-            scale: map.scale,
-            contact_email: map.contact_email,
-            images: images
-        }
-    }
-  end
 end
