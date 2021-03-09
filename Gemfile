@@ -105,4 +105,4 @@ gem "daemons"
 
 gem 'redis'
 
-ruby '2.7.0'
+ruby '2.7.2'
