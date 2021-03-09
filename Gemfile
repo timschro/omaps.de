@@ -100,4 +100,9 @@ gem "barnes"
 gem 'scout_apm'
 gem "webpacker"
 
-ruby '2.6.6'
+gem 'delayed_job_active_record'
+gem "daemons"
+
+gem 'redis'
+
+ruby '2.7.0'

@@ -33,7 +33,8 @@ class Map < ActiveRecord::Base
   validates :lat, :lng, :contours, numericality: true
 
   before_save :add_editor
-
+  
+  after_commit :cache, on: [:create, :update]
 
   after_initialize do |obj|
    # obj.last_editor_id = nil
@@ -75,7 +76,6 @@ class Map < ActiveRecord::Base
   end
 
   def add_editor
-    logger.debug("add_editor?")
     if last_editor_id_changed?
       logger.debug("last_editor_id_changed?")
       PaperTrail.request(whodunnit: last_editor_id.to_s) do
@@ -84,6 +84,14 @@ class Map < ActiveRecord::Base
       end
 
     end
+  end
+  
+  def cache
+    MapCacheJob.perform_later self 
+  end
+  
+  def uncache
+    MapUncacheJob.perform_later self
   end
 
   after_save do
