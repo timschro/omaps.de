@@ -35,6 +35,8 @@ class Map < ActiveRecord::Base
   before_save :add_editor
   
   after_commit :cache, on: [:create, :update]
+  after_commit :uncache, on: :destroy
+  
 
   after_initialize do |obj|
    # obj.last_editor_id = nil
@@ -87,12 +89,20 @@ class Map < ActiveRecord::Base
   end
   
   def cache
-    MapCacheJob.perform_later self 
+    if self.published?
+      MapCacheJob.perform_later self 
+    else
+      uncache
+    end
+    MapsExpireJob.perform_later self 
   end
   
   def uncache
-    MapUncacheJob.perform_later self
+    MapUncacheJob.perform_later self 
+    MapsExpireJob.perform_later self 
   end
+  
+  
 
   after_save do
     Array(remove_images).each do |id|

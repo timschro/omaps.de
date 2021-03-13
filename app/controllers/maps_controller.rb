@@ -1,4 +1,10 @@
 class MapsController < ApplicationController
+  
+  caches_page :index
+  caches_page :search
+  
+  
+  
   def index
     geojson = {
         type: 'FeatureCollection',
