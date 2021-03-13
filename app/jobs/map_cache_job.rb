@@ -46,7 +46,7 @@ class MapCacheJob < ApplicationJob
               type: map.map_type.title
           }
       }
-      REDIS.set("map_#{m.id}", json.to_json)
+      REDIS.set("map_#{map.id}", json.to_json)
       
 
       json =  {

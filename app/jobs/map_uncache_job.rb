@@ -8,5 +8,6 @@ class MapUncacheJob < ApplicationJob
       REDIS.del("m_#{map.id}")
       REDIS.del("s_#{map.id}")
     end
+    
   end
 end
