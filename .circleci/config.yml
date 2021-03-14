@@ -23,6 +23,10 @@ jobs:
           MYSQL_ROOT_PASSWORD: ''
           MYSQL_DATABASE: omaps_test
       - image: circleci/postgres:latest
+        environment:
+          POSTGRES_USER: omaps
+          POSTGRES_PASSWORD: omaps034d
+          POSTGRES_DB: omaps_test
       
     working_directory: ~/repo
 
