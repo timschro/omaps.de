@@ -16,12 +16,18 @@ jobs:
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/postgres:9.4
+    
       - image: circleci/mysql:5.7.24
         environment:
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
           MYSQL_ROOT_PASSWORD: ''
           MYSQL_DATABASE: omaps_test
-
+      - image: circleci/postgres:latest
+        environment:
+          POSTGRES_USER: omaps
+          POSTGRES_PASSWORD: omaps034d
+          POSTGRES_DB: omaps_test
+      
     working_directory: ~/repo
 
     steps:
@@ -54,30 +60,30 @@ jobs:
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
       # Database setup
-      - run: bundle exec rake db:create RAILS_ENV=test
-      - run: bundle exec rake db:schema:load RAILS_ENV=test
+      #- run: bundle exec rake db:create RAILS_ENV=test
+      #- run: bundle exec rake db:schema:load RAILS_ENV=test
 
       # run tests!
-      - run:
-          name: run tests
-          command: |
-            mkdir /tmp/test-results
-            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
-              circleci tests split --split-by=timings)"
-
-            bundle exec rspec \
-              --format progress \
-              --format RspecJunitFormatter \
-              --out /tmp/test-results/rspec.xml \
-              --format progress \
-              $TEST_FILES
+      # - run:
+      #    name: run tests
+      #    command: |
+      #      mkdir /tmp/test-results
+      #      TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
+      #        circleci tests split --split-by=timings)"
+#
+      #      bundle exec rspec \
+      #        --format progress \
+      #        --format RspecJunitFormatter \
+      #        --out /tmp/test-results/rspec.xml \
+      #        --format progress \
+      #        $TEST_FILES
 
       # collect reports
-      - store_test_results:
-          path: /tmp/test-results
-      - store_artifacts:
-          path: /tmp/test-results
-          destination: test-results
+      #- store_test_results:
+      #    path: /tmp/test-results
+      #- store_artifacts:
+      #    path: /tmp/test-results
+      #    destination: test-results
   deploy:
     docker:
       - image: buildpack-deps:trusty
