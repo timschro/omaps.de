@@ -13,8 +13,13 @@ class MapsController < ApplicationController
     
     
     Map.published.each do |m|
-      json = REDIS.get("m_#{m.id}")
-      geojson[:features] << JSON.parse(json)
+      begin
+        json = REDIS.get("m_#{m.id}")
+        geojson[:features] << JSON.parse(json)
+      rescue
+        MapCacheJob.perform_later m
+        logger.error("No JSPN for #{m.id}. Regenerating.")     
+      end
     end
 
     expires_in 15.minutes, public: true
@@ -49,8 +54,16 @@ class MapsController < ApplicationController
       redirect_to '/', :status => 404
       return
     end
+    
+    begin
+      json = REDIS.get("map_#{map_id}")
+    rescue
+      json = {"error": "map_#{map_id} not in Cache"}
+      MapCacheJob.perform_later m
+      logger.error("No JSPN for map_#{map_id}. Regenerating.")     
+    end
 
-    json = REDIS.get("map_#{map_id}")
+    
     respond_to do |format|
       format.json {render json: json}
     end
