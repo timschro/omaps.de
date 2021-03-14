@@ -9,13 +9,10 @@
 # And be sure to use new-style password hashing:
 #   https://dev.mysql.com/doc/refman/5.7/en/password-hashing.html
 #
-mysql: &mysql
-  adapter: mysql2
+default: &default
+  adapter: postgresql
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: root
-  password:
-  host: localhost
 
 
 sqlite: &sqlite
@@ -24,7 +21,7 @@ sqlite: &sqlite
   timeout: 5000
 
 development:
-  <<: *mysql
+  <<: *default
   database: omaps_development
 
 
@@ -32,10 +29,9 @@ development:
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
-  <<: *mysql
+  <<: *default
   database: omaps_test
-  host: 127.0.0.1
-  port: 3306
+
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -57,5 +53,5 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *mysql
-  database: omaps_development
+  <<: *default
+  url: <%= ENV['HEROKU_POSTGRESQL_BLACK_URL'] %>
