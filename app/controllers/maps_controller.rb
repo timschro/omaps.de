@@ -60,7 +60,7 @@ class MapsController < ApplicationController
     rescue
       json = {"error": "map_#{map_id} not in Cache"}
       MapCacheJob.perform_later m
-      logger.error("No JSPN for map_#{map_id}. Regenerating.")     
+      logger.error("No JSON for map_#{map_id}. Regenerating.")     
     end
 
     
