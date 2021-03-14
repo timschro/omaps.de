@@ -105,4 +105,6 @@ gem "daemons"
 
 gem 'redis'
 
+gem 'pg'
+
 ruby '2.7.2'
