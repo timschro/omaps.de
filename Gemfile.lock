@@ -185,7 +185,7 @@ GEM
       activerecord
       kaminari-core (= 1.2.2)
     kaminari-core (1.2.2)
-    listen (3.7.0)
+    listen (3.9.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
     loofah (2.16.0)
@@ -270,7 +270,7 @@ GEM
       rake (>= 12.2)
       thor (~> 1.0)
     rake (13.0.6)
-    rb-fsevent (0.11.0)
+    rb-fsevent (0.11.2)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     redis (4.5.1)
@@ -382,7 +382,7 @@ DEPENDENCIES
   i18n-active_record
   image_processing (~> 1.2)
   jbuilder (~> 2.5)
-  listen (>= 3.0.5, <= 3.7.0)
+  listen (>= 3.0.5, <= 3.9.0)
   mini_magick
   mysql2 (>= 0.4.4, < 0.6.0)
   paper_trail
